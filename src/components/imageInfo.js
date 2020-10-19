@@ -52,6 +52,8 @@ const TitleArea = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 2rem;
+	padding-bottom: 1.5rem;
+	border-bottom: 1px solid grey;
 `;
 const Title = styled.p`
 	font-size: 1.5rem;
