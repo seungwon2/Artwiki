@@ -7,7 +7,7 @@ import { Card } from "antd";
 
 export default function ArtWork({ image, title, artist, desc }) {
 	return (
-		<Wrapper href='/'>
+		<Wrapper href='/detail'>
 			<Card hoverable style={{ width: 300 }} cover={<img src={image} />}>
 				<Title>{title}</Title>
 				<Artist>{artist}</Artist>
