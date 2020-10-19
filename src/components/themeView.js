@@ -18,7 +18,7 @@ export default function ThemeView() {
 const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin: 0rem 10rem 10rem 10rem;
+	margin: 0rem 10rem 5rem 10rem;
 `;
 const Title = styled.p`
 	font-size: 1.5rem;

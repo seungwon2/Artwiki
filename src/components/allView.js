@@ -121,6 +121,7 @@ const Wrapper = styled.div`
 `;
 const Title = styled.p`
 	font-size: 1.5rem;
+	margin-bottom: 0;
 `;
 const Artworks = styled.div`
 	display: flex;

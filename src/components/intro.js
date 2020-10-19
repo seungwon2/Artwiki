@@ -41,7 +41,7 @@ export default function Intro() {
 const Wrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
-	margin: 10rem;
+	margin: 5rem 10rem;
 	align-items: center;
 `;
 const Title = styled.label`
