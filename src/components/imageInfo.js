@@ -3,6 +3,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { SwapLeftOutlined, SwapRightOutlined } from "@ant-design/icons";
+
 export default function ImageInfo({
 	title,
 	artist,
@@ -39,6 +41,16 @@ export default function ImageInfo({
 					작품 크기: {dimensions}
 				</BasicInfo>
 			</DescArea>
+			<Row>
+				<Button href='/'>
+					<SwapLeftOutlined style={{ fontSize: "3rem", color: "black" }} />
+					<Text>이전 작품으로</Text>
+				</Button>
+				<Button href='/'>
+					<Text>다음 작품으로</Text>
+					<SwapRightOutlined style={{ fontSize: "3rem", color: "black" }} />
+				</Button>
+			</Row>
 		</Wrapper>
 	);
 }
@@ -74,4 +86,20 @@ const BasicInfo = styled.label`
 `;
 const Desc = styled.label`
 	flex-basis: 45%;
+`;
+const Row = styled.div`
+	display: flex;
+	justify-content: space-between;
+	margin-top: 5rem;
+`;
+const Text = styled.label`
+	border: none;
+	background: none;
+	font-size: 1.1rem;
+	margin-bottom: 0;
+	color: black;
+`;
+const Button = styled.a`
+	display: flex;
+	align-items: center;
 `;

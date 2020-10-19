@@ -13,10 +13,16 @@ export default function Slide() {
 		textAlign: "center",
 		background: "lightgrey",
 	};
+	const test = {
+		textAlign: "center",
+		background: "black",
+		margin: "auto",
+	};
 	return (
 		<Carousel autoplay>
 			<div>
 				<h3 style={contentStyle}>1</h3>
+				{/* <img src='/banner.jpg' height='400px' width='auto' style={test} /> */}
 			</div>
 			<div>
 				<h3 style={contentStyle}>2</h3>
