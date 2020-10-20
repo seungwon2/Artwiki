@@ -21,7 +21,9 @@ export default function ImageDetail({ image }) {
 				<Image src={image} width='100%' onClick={handleZoom} />
 			</ImageArea>
 			<ButtonArea>
-				<Button onClick={handleEdit}>편집</Button>
+				<a href='/edit'>
+					<Button onClick={handleEdit}>편집</Button>
+				</a>
 				<Button onClick={handleZoom}>확대</Button>
 			</ButtonArea>
 			<Modal
