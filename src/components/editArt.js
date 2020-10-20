@@ -34,10 +34,22 @@ export default function EditArt({ image }) {
 				onChange={onChange}
 				width={width}
 				height={height}
+				annotationStyle={{
+					...defaultShapeStyle,
+					shapeStrokeStyle: "#2193ff",
+					transformerBackground: "black",
+				}}
+				inputElement={(value, onChange, onDelete) => (
+					<DefaultInputSection
+						placeholder={"Hello world"}
+						{...{ value, onChange, onDelete }}
+					/>
+				)}
 			/>
 		</Wrapper>
 	);
 }
 const Wrapper = styled.div`
-	width: 50%;
+	width: 100%;
+	background-color: black;
 `;

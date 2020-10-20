@@ -3,6 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import EditArt from "../src/components/editArt";
+import NavBar from "../src/components/navBar";
 
 export default function Edit() {
 	return (
