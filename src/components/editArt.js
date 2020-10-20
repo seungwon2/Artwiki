@@ -10,12 +10,12 @@ import {
 } from "react-picture-annotation";
 
 export default function EditArt({ image }) {
-	const [pageSize, setPageSize] = useState({
-		width: window.innerWidth,
-		height: window.innerHeight,
-	});
+	const [width, setWidth] = useState(0);
+	const [height, setHeight] = useState(0);
+
 	const onResize = () => {
-		setPageSize({ width: window.innerWidth, height: window.innerHeight });
+		setWidth(window.innerWidth);
+		setHeight(window.innerHeight);
 	};
 
 	useEffect(() => {
@@ -29,11 +29,11 @@ export default function EditArt({ image }) {
 	return (
 		<Wrapper>
 			<ReactPictureAnnotation
-				image={image}
+				image='https://source.unsplash.com/random/800x600'
 				onSelect={onSelect}
 				onChange={onChange}
-				width={pageSize.width}
-				height={pageSize.height}
+				width={width}
+				height={height}
 			/>
 		</Wrapper>
 	);
