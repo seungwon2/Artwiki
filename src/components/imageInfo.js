@@ -42,11 +42,11 @@ export default function ImageInfo({
 				</BasicInfo>
 			</DescArea>
 			<Row>
-				<Button href='/'>
+				<Button href='/detail'>
 					<SwapLeftOutlined style={{ fontSize: "3rem", color: "black" }} />
 					<Text>이전 작품으로</Text>
 				</Button>
-				<Button href='/'>
+				<Button href='/detail'>
 					<Text>다음 작품으로</Text>
 					<SwapRightOutlined style={{ fontSize: "3rem", color: "black" }} />
 				</Button>
