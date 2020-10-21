@@ -2,4 +2,4 @@
 
 ## 2020 HCI Lab artwiki project
 
-Image annotiation based Crowd Sourcing art wiki web
+Image annotiation based crowdsourcing art wiki project
