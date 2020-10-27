@@ -1,52 +1,37 @@
 /** @format */
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-
-import {
-	ReactPictureAnnotation,
-	defaultShapeStyle,
-	DefaultInputSection,
-} from "react-picture-annotation";
+import Annotation from "react-image-annotation";
+import { RectangleSelector } from "react-image-annotation/lib/selectors";
 
 export default function EditArt({ image }) {
-	const [width, setWidth] = useState(0);
-	const [height, setHeight] = useState(0);
+	const [annotations, setAnnotations] = useState([]);
+	const [annotation, setAnnotation] = useState({});
 
-	const onResize = () => {
-		setWidth(window.innerWidth);
-		setHeight(window.innerHeight);
+	const onChange = (annotation) => {
+		setAnnotation(annotation);
 	};
 
-	useEffect(() => {
-		window.addEventListener("resize", onResize);
-		return () => window.removeEventListener("resize", onResize);
-	}, []);
-
-	const onSelect = (selectedId) => console.log(selectedId);
-	const onChange = (data) => console.log(data);
+	const onSubmit = (annotation) => {
+		const { geometry, data } = annotation;
+		setAnnotation({});
+		setAnnotations([...annotations, { geometry, data }]);
+		console.log(annotations);
+	};
 
 	return (
-		<Wrapper>
-			<ReactPictureAnnotation
-				image='https://source.unsplash.com/random/800x600'
-				onSelect={onSelect}
+		<>
+			<Annotation
+				src='/starrynight.jpeg'
+				alt='Two pebbles anthropomorphized holding hands'
+				annotations={annotations}
+				type={RectangleSelector.TYPE}
+				value={annotation}
 				onChange={onChange}
-				width={width}
-				height={height}
-				annotationStyle={{
-					...defaultShapeStyle,
-					shapeStrokeStyle: "#2193ff",
-					transformerBackground: "black",
-				}}
-				inputElement={(value, onChange, onDelete) => (
-					<DefaultInputSection
-						placeholder={"Hello world"}
-						{...{ value, onChange, onDelete }}
-					/>
-				)}
+				onSubmit={onSubmit}
 			/>
-		</Wrapper>
+		</>
 	);
 }
 const Wrapper = styled.div`

@@ -15,7 +15,7 @@
 		"next": "9.4.2",
 		"react": "16.13.1",
 		"react-dom": "16.13.1",
-		"react-picture-annotation": "^1.1.0",
+		"react-image-annotation": "^0.9.10",
 		"styled-components": "^5.1.0"
 	},
 	"devDependencies": {
