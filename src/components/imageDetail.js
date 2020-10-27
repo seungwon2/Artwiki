@@ -47,22 +47,6 @@ const Wrapper = styled.div`
 const Image = styled.img`
 	height: auto;
 `;
-const Button = styled.button`
-	color: black !important;
-	text-transform: uppercase;
-	background: #ffffff;
-	padding: 20px;
-	border: 1px solid black !important;
-	border-radius: 50%;
-	display: inline-block;
-	transition: all 0.3s ease 0s;
-	&:hover {
-		color: #ffffff !important;
-		background: #3483eb;
-		border-color: #3483eb !important;
-		transition: all 0.4s ease 0s;
-	}
-`;
 
 const ButtonArea = styled.div`
 	display: flex;
@@ -73,4 +57,33 @@ const ImageArea = styled.div`
 	display: flex;
 	flex-direction: center;
 	margin: 0rem 15rem 2rem 15rem;
+`;
+const Button = styled.button`
+	color: #fff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+	line-height: 1.5715;
+	position: relative;
+	display: inline-block;
+	font-weight: 400;
+	white-space: nowrap;
+	text-align: center;
+	-webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+	box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+	cursor: pointer;
+	-webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+	transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	height: fit-content;
+	padding: 15px 15px;
+	font-size: 14px;
+	border-radius: 50%;
+	color: rgba(0, 0, 0, 0.85);
+	background: #fff;
+	border: 1px solid #d9d9d9;
+	&: hover {
+		color: #fff;
+		background: #1890ff;
+		border-color: #1890ff;
+	}
 `;

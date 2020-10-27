@@ -41,7 +41,7 @@ export default function EditArt({ image }) {
 	const activeAnnotationComparator = (a, b) => {
 		return a.data.id === b;
 	};
-	const onClickDelete = (id) => {
+	const onClick = (id) => {
 		const newAnnotations = [...annotations];
 		console.log("before: " + annotations);
 		setAnnotations(
@@ -62,6 +62,7 @@ export default function EditArt({ image }) {
 				activeAnnotationComparator={activeAnnotationComparator}
 				activeAnnotations={activeAnnotations}
 			/>
+			<Label>Annotation List</Label>
 			<Comments>
 				{annotations.map((annotation) => (
 					<Comment
@@ -71,7 +72,7 @@ export default function EditArt({ image }) {
 						data={annotation.data.text}
 						annotations={annotations}
 						id={annotation.data.id}
-						onClick={onClickDelete}
+						onClick={onClick}
 					/>
 				))}
 			</Comments>
@@ -81,9 +82,18 @@ export default function EditArt({ image }) {
 const Comments = styled.div`
 	width: 100%;
 	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 `;
 
 const Wrapper = styled.div`
 	width: 80%;
 	margin: 5rem auto;
+`;
+const Label = styled.label`
+	width: 100%;
+	margin: 0.5rem auto;
+	text-align: center;
+	font-size: 1.2rem;
 `;
