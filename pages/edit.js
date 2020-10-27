@@ -8,11 +8,14 @@ import NavBar from "../src/components/navBar";
 export default function Edit() {
 	return (
 		<Wrapper>
+			<NavBar />
 			<EditArt image='/starrynight.jpeg' />
 		</Wrapper>
 	);
 }
 const Wrapper = styled.div`
 	width: 100%;
-	margin: 10rem;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 `;
