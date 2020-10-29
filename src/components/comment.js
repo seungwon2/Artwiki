@@ -10,8 +10,6 @@ export default function Comment({
 	onMouseOut,
 	key,
 	id,
-	annotations,
-	setAnnotations,
 	onClick,
 }) {
 	return (
@@ -23,7 +21,7 @@ export default function Comment({
 }
 const Wrapper = styled.div`
 	display: flex;
-	width: 50%;
+	width: 100%;
 	margin: 0.3rem auto;
 	justify-content: space-between;
 	&: hover {

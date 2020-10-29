@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Annotation from "react-image-annotation";
 import { RectangleSelector } from "react-image-annotation/lib/selectors";
 
+import Scrollbar from "react-scrollbars-custom";
 import Comment from "./comment";
 import { Button } from "antd";
 
@@ -49,49 +50,50 @@ export default function EditArt({ image }) {
 	};
 
 	const handleSubmit = () => {
-		// const FormData = require("form-data");
-		// const form_data = new FormData();
-		// form_data.append("r_phone_num", form.rPhoneNum);
-
 		// axios
-		// 	.post("https://www.doodlehj.com/api/produce/", form_data)
+		// 	.post("https://www.doodlehj.com/api/produce/", annotations)
 		// 	.then(function () {
 		// 	})
 		// 	.catch(function () {
-		// 		warning();
 		// 	});
 		console.log("clicked");
 	};
 	const handleQuit = () => {
 		console.log("quit");
 	};
+
 	return (
 		<Wrapper>
-			<Annotation
-				src='/starrynight.jpeg'
-				alt='Two pebbles anthropomorphized holding hands'
-				annotations={annotations}
-				type={RectangleSelector.TYPE}
-				value={annotation}
-				onChange={onChange}
-				onSubmit={onSubmit}
-				activeAnnotationComparator={activeAnnotationComparator}
-				activeAnnotations={activeAnnotations}
-			/>
-			<Label>Annotation List</Label>
-			<Comments>
-				{annotations.map((annotation) => (
-					<Comment
-						onMouseOver={onMouseOver(annotation.data.id)}
-						onMouseOut={onMouseOut(annotation.data.id)}
-						key={annotation.data.id}
-						data={annotation.data.text}
+			<ImageAnnotation>
+				<ImageArea>
+					<Annotation
+						src='/starrynight.jpeg'
+						alt='Two pebbles anthropomorphized holding hands'
 						annotations={annotations}
-						id={annotation.data.id}
-						onClick={onClick}
+						type={RectangleSelector.TYPE}
+						value={annotation}
+						onChange={onChange}
+						onSubmit={onSubmit}
+						activeAnnotationComparator={activeAnnotationComparator}
+						activeAnnotations={activeAnnotations}
 					/>
-				))}
-			</Comments>
+				</ImageArea>
+				<LabelBox>
+					<Label>Annotation List</Label>
+					<Scrollbar style={{ height: 600 }}>
+						{annotations.map((annotation) => (
+							<Comment
+								onMouseOver={onMouseOver(annotation.data.id)}
+								onMouseOut={onMouseOut(annotation.data.id)}
+								key={annotation.data.id}
+								data={annotation.data.text}
+								id={annotation.data.id}
+								onClick={onClick}
+							/>
+						))}
+					</Scrollbar>
+				</LabelBox>
+			</ImageAnnotation>
 			<ButtonArea>
 				<Button onClick={handleSubmit}>편집 저장</Button>
 				<Blank />
@@ -100,16 +102,9 @@ export default function EditArt({ image }) {
 		</Wrapper>
 	);
 }
-const Comments = styled.div`
-	width: 100%;
-	background-color: white;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-`;
 
 const Wrapper = styled.div`
-	width: 80%;
+	width: 90%;
 	margin: 5rem auto;
 `;
 const Label = styled.label`
@@ -117,6 +112,7 @@ const Label = styled.label`
 	margin: 0.5rem auto;
 	text-align: center;
 	font-size: 1.2rem;
+	margin-bottom: 0.3rem;
 `;
 const ButtonArea = styled.div`
 	display: flex;
@@ -125,4 +121,20 @@ const ButtonArea = styled.div`
 `;
 const Blank = styled.div`
 	margin: 0 1rem;
+`;
+const LabelBox = styled.div`
+	height: 300px;
+	overflow: auto;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 30%;
+`;
+const ImageAnnotation = styled.div`
+	display: flex;
+	justify-content: space-around;
+`;
+const ImageArea = styled.div`
+	width: 65%;
 `;
