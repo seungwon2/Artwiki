@@ -2,10 +2,12 @@
 
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 import { SwapLeftOutlined, SwapRightOutlined } from "@ant-design/icons";
 
 export default function ImageInfo({
+	id,
 	title,
 	artist,
 	date,
@@ -42,14 +44,18 @@ export default function ImageInfo({
 				</BasicInfo>
 			</DescArea>
 			<Row>
-				<Button href='/detail'>
-					<SwapLeftOutlined style={{ fontSize: "3rem", color: "black" }} />
-					<Text>이전 작품으로</Text>
-				</Button>
-				<Button href='/detail'>
-					<Text>다음 작품으로</Text>
-					<SwapRightOutlined style={{ fontSize: "3rem", color: "black" }} />
-				</Button>
+				<Link href='/detail/[id]' as={`/detail/${id - 1}`}>
+					<Button href='/detail'>
+						<SwapLeftOutlined style={{ fontSize: "3rem", color: "black" }} />
+						<Text>이전 작품으로</Text>
+					</Button>
+				</Link>
+				<Link href='/detail/[id]' as={`/detail/${id + 1}`}>
+					<Button href='/detail'>
+						<Text>다음 작품으로</Text>
+						<SwapRightOutlined style={{ fontSize: "3rem", color: "black" }} />
+					</Button>
+				</Link>
 			</Row>
 		</Wrapper>
 	);

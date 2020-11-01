@@ -8,13 +8,16 @@ import { RectangleSelector } from "react-image-annotation/lib/selectors";
 import Scrollbar from "react-scrollbars-custom";
 import Comment from "./comment";
 import { Button } from "antd";
+import Rules from "./rules";
 
 export default function EditArt({ image }) {
 	const [annotations, setAnnotations] = useState([]);
 	const [annotation, setAnnotation] = useState({});
 	const [activeAnnotations, setActiveAnnotations] = useState([]);
+	const [isAnnotated, setIsAnotated] = useState(false);
 
 	const onChange = (annotation) => {
+		setIsAnotated(true);
 		setAnnotation(annotation);
 	};
 	const onSubmit = (annotation) => {
@@ -78,27 +81,30 @@ export default function EditArt({ image }) {
 						activeAnnotations={activeAnnotations}
 					/>
 				</ImageArea>
-				<LabelBox>
-					<Label>Annotation List</Label>
-					<Scrollbar style={{ height: 600 }}>
-						{annotations.map((annotation) => (
-							<Comment
-								onMouseOver={onMouseOver(annotation.data.id)}
-								onMouseOut={onMouseOut(annotation.data.id)}
-								key={annotation.data.id}
-								data={annotation.data.text}
-								id={annotation.data.id}
-								onClick={onClick}
-							/>
-						))}
-					</Scrollbar>
-				</LabelBox>
+				{!isAnnotated && <Rules />}
+				{isAnnotated && (
+					<LabelBox>
+						<Label>Annotation List</Label>
+						<Scrollbar style={{ height: 800 }}>
+							{annotations.map((annotation) => (
+								<Comment
+									onMouseOver={onMouseOver(annotation.data.id)}
+									onMouseOut={onMouseOut(annotation.data.id)}
+									key={annotation.data.id}
+									data={annotation.data.text}
+									id={annotation.data.id}
+									onClick={onClick}
+								/>
+							))}
+						</Scrollbar>
+						<ButtonArea>
+							<Button onClick={handleSubmit}>편집 저장</Button>
+							<Blank />
+							<Button onClick={handleQuit}>편집 취소</Button>
+						</ButtonArea>
+					</LabelBox>
+				)}
 			</ImageAnnotation>
-			<ButtonArea>
-				<Button onClick={handleSubmit}>편집 저장</Button>
-				<Blank />
-				<Button onClick={handleQuit}>편집 취소</Button>
-			</ButtonArea>
 		</Wrapper>
 	);
 }

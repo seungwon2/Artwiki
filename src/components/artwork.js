@@ -6,18 +6,21 @@ import Link from "next/link";
 
 import { Card } from "antd";
 
-export default function ArtWork({ image, title, artist, desc }) {
+export default function ArtWork({ image, title, artist, shortdesc, id }) {
 	return (
-		<Wrapper href='/detail'>
-			<Card hoverable style={{ width: 300 }} cover={<img src={image} />}>
-				<Title>{title}</Title>
-				<Artist>{artist}</Artist>
-				<Desc>{desc}</Desc>
-			</Card>
-		</Wrapper>
+		<Link href='/detail/[id]' as={`/detail/${id}`}>
+			<Wrapper>
+				<Card hoverable style={{ width: 300 }} cover={<img src={image} />}>
+					<Title>{title}</Title>
+					<Artist>{artist}</Artist>
+					<Desc>{shortdesc}</Desc>
+				</Card>
+			</Wrapper>
+		</Link>
 	);
 }
-const Wrapper = styled.a`
+
+const Wrapper = styled.div`
 	margin: 2.5rem 0rem;
 `;
 const Title = styled.label`

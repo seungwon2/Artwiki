@@ -3,9 +3,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import NavBar from "../src/components/navBar";
-import ImageDetail from "../src/components/imageDetail";
-import ImageInfo from "../src/components/imageInfo";
+import NavBar from "../../src/components/navBar";
+import ImageDetail from "../../src/components/imageDetail";
+import ImageInfo from "../../src/components/imageInfo";
 
 export default function Detail() {
 	// const [Data, setData] = useState([]);
@@ -40,8 +40,9 @@ export default function Detail() {
 	return (
 		<Wrapper>
 			<NavBar />
-			<ImageDetail image={ArtWork.image} />
+			<ImageDetail image={ArtWork.image} id={ArtWork.id} />
 			<ImageInfo
+				id={ArtWork.id}
 				title={ArtWork.title}
 				artist={ArtWork.artist}
 				date={ArtWork.date}

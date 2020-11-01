@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import styled from "styled-components";
-import ArtWork from "./artwork";
+import ArtWork from "./artwork.js";
 
 export default function AllView() {
 	// const [Data, setData] = useState([]);
@@ -27,7 +27,7 @@ export default function AllView() {
 			image: "/starrynight.jpeg",
 			title: "별이 빛나는 밤",
 			artist: "빈센트 반 고흐",
-			desc:
+			shortdesc:
 				"《별이 빛나는 밤》은 네덜란드의 화가 빈센트 반 고흐의 가장 널리 알려진 작품이다. 정신병을 앓고 있을 당시의 고흐가 그린 작품이다. 1889년 상 레미의 정신병원에서 나와 기억으로 그린 그림이지만, 당시 고흐는 정신장애로 인한 고통을 떠올려 그림 속의 소용돌이로 묘사했다.",
 		},
 		{
@@ -35,7 +35,7 @@ export default function AllView() {
 			image: "/starrynight.jpeg",
 			title: "별이 빛나는 밤",
 			artist: "빈센트 반 고흐",
-			desc:
+			shortdesc:
 				"《별이 빛나는 밤》은 네덜란드의 화가 빈센트 반 고흐의 가장 널리 알려진 작품이다. 정신병을 앓고 있을 당시의 고흐가 그린 작품이다. 1889년 상 레미의 정신병원에서 나와 기억으로 그린 그림이지만, 당시 고흐는 정신장애로 인한 고통을 떠올려 그림 속의 소용돌이로 묘사했다.",
 		},
 		{
@@ -43,7 +43,7 @@ export default function AllView() {
 			image: "/starrynight.jpeg",
 			title: "별이 빛나는 밤",
 			artist: "빈센트 반 고흐",
-			desc:
+			shortdesc:
 				"《별이 빛나는 밤》은 네덜란드의 화가 빈센트 반 고흐의 가장 널리 알려진 작품이다. 정신병을 앓고 있을 당시의 고흐가 그린 작품이다. 1889년 상 레미의 정신병원에서 나와 기억으로 그린 그림이지만, 당시 고흐는 정신장애로 인한 고통을 떠올려 그림 속의 소용돌이로 묘사했다.",
 		},
 		{
@@ -51,7 +51,7 @@ export default function AllView() {
 			image: "/starrynight.jpeg",
 			title: "별이 빛나는 밤",
 			artist: "빈센트 반 고흐",
-			desc:
+			shortdesc:
 				"《별이 빛나는 밤》은 네덜란드의 화가 빈센트 반 고흐의 가장 널리 알려진 작품이다. 정신병을 앓고 있을 당시의 고흐가 그린 작품이다. 1889년 상 레미의 정신병원에서 나와 기억으로 그린 그림이지만, 당시 고흐는 정신장애로 인한 고통을 떠올려 그림 속의 소용돌이로 묘사했다.",
 		},
 		{
@@ -59,7 +59,7 @@ export default function AllView() {
 			image: "/starrynight.jpeg",
 			title: "별이 빛나는 밤",
 			artist: "빈센트 반 고흐",
-			desc:
+			shortdesc:
 				"《별이 빛나는 밤》은 네덜란드의 화가 빈센트 반 고흐의 가장 널리 알려진 작품이다. 정신병을 앓고 있을 당시의 고흐가 그린 작품이다. 1889년 상 레미의 정신병원에서 나와 기억으로 그린 그림이지만, 당시 고흐는 정신장애로 인한 고통을 떠올려 그림 속의 소용돌이로 묘사했다.",
 		},
 		{
@@ -67,7 +67,7 @@ export default function AllView() {
 			image: "/starrynight.jpeg",
 			title: "별이 빛나는 밤",
 			artist: "빈센트 반 고흐",
-			desc:
+			shortdesc:
 				"《별이 빛나는 밤》은 네덜란드의 화가 빈센트 반 고흐의 가장 널리 알려진 작품이다. 정신병을 앓고 있을 당시의 고흐가 그린 작품이다. 1889년 상 레미의 정신병원에서 나와 기억으로 그린 그림이지만, 당시 고흐는 정신장애로 인한 고통을 떠올려 그림 속의 소용돌이로 묘사했다.",
 		},
 		{
@@ -75,7 +75,7 @@ export default function AllView() {
 			image: "/starrynight.jpeg",
 			title: "별이 빛나는 밤",
 			artist: "빈센트 반 고흐",
-			desc:
+			shortdesc:
 				"《별이 빛나는 밤》은 네덜란드의 화가 빈센트 반 고흐의 가장 널리 알려진 작품이다. 정신병을 앓고 있을 당시의 고흐가 그린 작품이다. 1889년 상 레미의 정신병원에서 나와 기억으로 그린 그림이지만, 당시 고흐는 정신장애로 인한 고통을 떠올려 그림 속의 소용돌이로 묘사했다.",
 		},
 		{
@@ -83,7 +83,7 @@ export default function AllView() {
 			image: "/starrynight.jpeg",
 			title: "별이 빛나는 밤",
 			artist: "빈센트 반 고흐",
-			desc:
+			shortdesc:
 				"《별이 빛나는 밤》은 네덜란드의 화가 빈센트 반 고흐의 가장 널리 알려진 작품이다. 정신병을 앓고 있을 당시의 고흐가 그린 작품이다. 1889년 상 레미의 정신병원에서 나와 기억으로 그린 그림이지만, 당시 고흐는 정신장애로 인한 고통을 떠올려 그림 속의 소용돌이로 묘사했다.",
 		},
 		{
@@ -91,7 +91,7 @@ export default function AllView() {
 			image: "/starrynight.jpeg",
 			title: "별이 빛나는 밤",
 			artist: "빈센트 반 고흐",
-			desc:
+			shortdesc:
 				"《별이 빛나는 밤》은 네덜란드의 화가 빈센트 반 고흐의 가장 널리 알려진 작품이다. 정신병을 앓고 있을 당시의 고흐가 그린 작품이다. 1889년 상 레미의 정신병원에서 나와 기억으로 그린 그림이지만, 당시 고흐는 정신장애로 인한 고통을 떠올려 그림 속의 소용돌이로 묘사했다.",
 		},
 	];
@@ -103,10 +103,11 @@ export default function AllView() {
 				{ArtWorks.map((artwork) => (
 					<ArtWork
 						key={artwork.id}
+						id={artwork.id}
 						image={artwork.image}
 						title={artwork.title}
 						artist={artwork.artist}
-						desc={artwork.desc}
+						shortdesc={artwork.shortdesc}
 					/>
 				))}
 			</Artworks>

@@ -2,9 +2,10 @@
 
 import React, { useState } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 import { Modal } from "antd";
-export default function ImageDetail({ image }) {
+export default function ImageDetail({ image, id }) {
 	const [visible, setVisible] = useState(false);
 
 	const handleEdit = () => {
@@ -21,9 +22,9 @@ export default function ImageDetail({ image }) {
 				<Image src={image} width='100%' onClick={handleZoom} />
 			</ImageArea>
 			<ButtonArea>
-				<a href='/edit'>
+				<Link href='/detail/[id]/edit' as={`/detail/${id}/edit`}>
 					<Button onClick={handleEdit}>편집</Button>
-				</a>
+				</Link>
 				<Button onClick={handleZoom}>확대</Button>
 			</ButtonArea>
 			<Modal
