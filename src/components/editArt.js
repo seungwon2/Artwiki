@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Annotation from "react-image-annotation";
 import { RectangleSelector } from "react-image-annotation/lib/selectors";
+import axios from "axios";
 
 import Scrollbar from "react-scrollbars-custom";
 import Comment from "./comment";
@@ -53,12 +54,13 @@ export default function EditArt({ image }) {
 	};
 
 	const handleSubmit = () => {
-		// axios
-		// 	.post("https://www.doodlehj.com/api/produce/", annotations)
-		// 	.then(function () {
-		// 	})
-		// 	.catch(function () {
-		// 	});
+		axios
+			.post(
+				"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/annotation/",
+				annotations
+			)
+			.then()
+			.catch(function () {});
 		console.log("clicked");
 	};
 	const handleQuit = () => {
@@ -123,7 +125,7 @@ const Label = styled.label`
 const ButtonArea = styled.div`
 	display: flex;
 	justify-content: center;
-	margin-top: 3rem;
+	margin-top: 0.5rem;
 `;
 const Blank = styled.div`
 	margin: 0 1rem;
