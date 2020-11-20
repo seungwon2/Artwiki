@@ -88,7 +88,6 @@ export default function EditArt({ image }) {
 		<Wrapper>
 			<ImageAnnotation>
 				<ImageArea>
-					<Image></Image>
 					<Annotation
 						src='/starrynight.jpeg'
 						alt='Two pebbles anthropomorphized holding hands'
@@ -101,7 +100,6 @@ export default function EditArt({ image }) {
 						activeAnnotations={activeAnnotations}
 					/>
 				</ImageArea>
-				{/* {!isAnnotated && <Rules />} */}
 
 				<LabelBox>
 					<Label>Annotation List</Label>
