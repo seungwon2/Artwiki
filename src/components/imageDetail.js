@@ -17,7 +17,7 @@ export default function ImageDetail({ image }) {
 const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	margin: 5rem 10rem;
+	margin: 3rem 8rem;
 `;
 
 const ImageArea = styled.a`

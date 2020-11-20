@@ -56,4 +56,6 @@ export default function Detail() {
 	);
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+	margin: 0 5rem;
+`;
