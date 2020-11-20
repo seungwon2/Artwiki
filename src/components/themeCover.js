@@ -14,12 +14,15 @@ export default function ThemeCover({ link, image, theme }) {
 	);
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+	margin-top: 1rem;
+`;
 
 const Profile = styled.img`
 	width: 15rem;
 	opacity: 1;
 	display: block;
+	max-height: 18rem;
 	height: auto;
 	transition: 0.5s ease;
 	backface-visibility: hidden;
@@ -36,4 +39,5 @@ const ArtTitle = styled.label`
 	color: black;
 	font-size: 1.1rem;
 	text-align: center;
+	margin-top: 1rem;
 `;

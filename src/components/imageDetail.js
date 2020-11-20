@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
-import { Modal } from "antd";
+import { Modal, Image } from "antd";
 export default function ImageDetail({ image, id }) {
 	const [visible, setVisible] = useState(false);
 
@@ -19,23 +19,13 @@ export default function ImageDetail({ image, id }) {
 	return (
 		<Wrapper>
 			<ImageArea>
-				<Image src={image} width='100%' onClick={handleZoom} />
+				<Image src={image} width='100%' />
 			</ImageArea>
 			<ButtonArea>
 				<Link href='/detail/[id]/edit' as={`/detail/${id}/edit`}>
 					<Button onClick={handleEdit}>편집</Button>
 				</Link>
-				<Button onClick={handleZoom}>확대</Button>
 			</ButtonArea>
-			<Modal
-				title='작품 확대 보기'
-				centered
-				visible={visible}
-				onOk={() => setVisible(false)}
-				onCancel={() => setVisible(false)}
-				width={"100%"}>
-				<Image src={image} width='100%' />
-			</Modal>
 		</Wrapper>
 	);
 }
@@ -44,9 +34,6 @@ const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin: 5rem 10rem;
-`;
-const Image = styled.img`
-	height: auto;
 `;
 
 const ButtonArea = styled.div`

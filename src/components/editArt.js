@@ -56,11 +56,28 @@ export default function EditArt({ image }) {
 	const handleSubmit = () => {
 		axios
 			.post(
-				"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/annotation/",
-				annotations
+				"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/",
+				{ annotations }
 			)
-			.then()
-			.catch(function () {});
+			.then(console.log(annotation))
+			.catch(function (error) {
+				if (error.response) {
+					// 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+
+					console.log(error.response.data);
+					console.log(error.response.status);
+					console.log(error.response.headers);
+				} else if (error.request) {
+					// 요청이 이루어 졌으나 응답을 받지 못했습니다.
+					// `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+					// Node.js의 http.ClientRequest 인스턴스입니다.
+					console.log(error.request);
+				} else {
+					// 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+					console.log("Error", error.message);
+				}
+				console.log(error.config);
+			});
 		console.log("clicked");
 	};
 	const handleQuit = () => {
@@ -71,6 +88,7 @@ export default function EditArt({ image }) {
 		<Wrapper>
 			<ImageAnnotation>
 				<ImageArea>
+					<Image></Image>
 					<Annotation
 						src='/starrynight.jpeg'
 						alt='Two pebbles anthropomorphized holding hands'
@@ -83,29 +101,28 @@ export default function EditArt({ image }) {
 						activeAnnotations={activeAnnotations}
 					/>
 				</ImageArea>
-				{!isAnnotated && <Rules />}
-				{isAnnotated && (
-					<LabelBox>
-						<Label>Annotation List</Label>
-						<Scrollbar style={{ height: 800 }}>
-							{annotations.map((annotation) => (
-								<Comment
-									onMouseOver={onMouseOver(annotation.data.id)}
-									onMouseOut={onMouseOut(annotation.data.id)}
-									key={annotation.data.id}
-									data={annotation.data.text}
-									id={annotation.data.id}
-									onClick={onClick}
-								/>
-							))}
-						</Scrollbar>
-						<ButtonArea>
-							<Button onClick={handleSubmit}>편집 저장</Button>
-							<Blank />
-							<Button onClick={handleQuit}>편집 취소</Button>
-						</ButtonArea>
-					</LabelBox>
-				)}
+				{/* {!isAnnotated && <Rules />} */}
+
+				<LabelBox>
+					<Label>Annotation List</Label>
+					<Scrollbar style={{ height: 800 }}>
+						{annotations.map((annotation) => (
+							<Comment
+								onMouseOver={onMouseOver(annotation.data.id)}
+								onMouseOut={onMouseOut(annotation.data.id)}
+								key={annotation.data.id}
+								data={annotation.data.text}
+								id={annotation.data.id}
+								onClick={onClick}
+							/>
+						))}
+					</Scrollbar>
+					<ButtonArea>
+						<Button onClick={handleSubmit}>편집 저장</Button>
+						<Blank />
+						<Button onClick={handleQuit}>편집 취소</Button>
+					</ButtonArea>
+				</LabelBox>
 			</ImageAnnotation>
 		</Wrapper>
 	);

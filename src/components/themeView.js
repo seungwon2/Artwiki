@@ -8,27 +8,27 @@ export default function ThemeView() {
 	const Themes = [
 		{
 			id: 1,
-			image: "/gogh.png",
+			image: "/kd.jpg",
 			link: "/artworks",
-			theme: "빈센트 반 고흐",
+			theme: "추상 예술",
 		},
 		{
 			id: 2,
-			image: "/gogh.png",
+			image: "/pr.jpg",
 			link: "/artworks",
-			theme: "빈센트 반 고흐",
+			theme: "프리다 칼로",
 		},
 		{
 			id: 3,
-			image: "/gogh.png",
+			image: "/mn.jpg",
 			link: "/artworks",
-			theme: "빈센트 반 고흐",
+			theme: "풍경화",
 		},
 		{
 			id: 4,
-			image: "/gogh.png",
+			image: "/dg.jpg",
 			link: "/artworks",
-			theme: "빈센트 반 고흐",
+			theme: "인상주의",
 		},
 	];
 	return (
