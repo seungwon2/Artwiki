@@ -131,17 +131,19 @@ export default function Label() {
 	return (
 		<Wrapper>
 			<NavBar />
-			<Annotation
-				src='/starrynight.jpeg'
-				alt='Two pebbles anthropomorphized holding hands'
-				annotations={annotations}
-				type={RectangleSelector.TYPE}
-				value={annotation}
-				onChange={onChange}
-				onSubmit={onSubmit}
-				activeAnnotationComparator={activeAnnotationComparator}
-				activeAnnotations={activeAnnotations}
-			/>
+			<ImageArea>
+				<Annotation
+					src='/starrynight.jpeg'
+					alt='Two pebbles anthropomorphized holding hands'
+					annotations={annotations}
+					type={RectangleSelector.TYPE}
+					value={annotation}
+					onChange={onChange}
+					onSubmit={onSubmit}
+					activeAnnotationComparator={activeAnnotationComparator}
+					activeAnnotations={activeAnnotations}
+				/>
+			</ImageArea>
 		</Wrapper>
 	);
 }
@@ -150,4 +152,7 @@ const Wrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+`;
+const ImageArea = styled.div`
+	margin: 10rem 20rem;
 `;
