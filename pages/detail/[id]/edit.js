@@ -5,7 +5,7 @@ import styled from "styled-components";
 import NavBar from "../../../src/components/navBar";
 import EditArt from "../../../src/components/editArt";
 
-export default function Edit() {
+export default function Edit({ image }) {
 	return (
 		<Wrapper>
 			<NavBar />

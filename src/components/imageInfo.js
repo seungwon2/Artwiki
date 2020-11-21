@@ -37,7 +37,7 @@ export default function ImageInfo({
 						<ButtonText>라벨 등록 하기</ButtonText>
 					</LongButton>
 				</Link>
-				<Link href='/detail/[id]' as={`/detail/${id}`}>
+				<Link href='/detail/[id]/label' as={`/detail/${id}/label`}>
 					<LongButton>
 						<TagsFilled style={{ fontSize: 20 + "px" }} />
 						<ButtonText>라벨과 함께 보기</ButtonText>

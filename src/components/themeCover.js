@@ -31,7 +31,6 @@ const Image = styled.img`
 	object-fit: cover;
 	border-radius: 8px;
 	transition: transform 0.5s ease;
-
 	&:hover {
 		transform: scale(1.5);
 	}
@@ -53,6 +52,13 @@ const ArtTitle = styled.label`
 `;
 const Overlay = styled.div`
 	overflow: hidden;
+	background: black;
+	color: black;
+	background-color: black;
+	opacity: 0.7;
+	&:hover {
+		opacity: 1;
+	}
 `;
 const Text = styled.div`
 	color: white;
@@ -78,14 +84,3 @@ const Button = styled.div`
 	border-radius: 3%;
 	padding: 3px 8px;
 `;
-// const Line = styled.p`
-// 	color: white;
-// 	font-size: 3rem;
-// 	text-align: center;
-// 	margin-top: 1rem;
-// 	position: absolute;
-// 	top: 10%;
-// 	left: 50%;
-// 	transform: translate(-50%, -50%);
-// 	z-index: 5;
-// `;
