@@ -3,12 +3,18 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function ThemeCover({ link, image, theme }) {
+export default function ThemeCover({ link, image, theme, info }) {
 	return (
 		<Wrapper>
 			<Theme href={link}>
-				<Profile src={image} />
-				<ArtTitle>{theme}</ArtTitle>
+				<Overlay>
+					<Image src={image} />
+				</Overlay>
+				<Text>
+					<ArtTitle>{theme}</ArtTitle>
+					<Desc>{info}</Desc>
+					<Button>자세히 보기</Button>
+				</Text>
 			</Theme>
 		</Wrapper>
 	);
@@ -18,26 +24,68 @@ const Wrapper = styled.div`
 	margin-top: 1rem;
 `;
 
-const Profile = styled.img`
-	width: 15rem;
-	opacity: 1;
+const Image = styled.img`
+	width: 17rem;
 	display: block;
-	max-height: 18rem;
-	height: auto;
-	transition: 0.5s ease;
-	backface-visibility: hidden;
+	height: 28rem;
+	object-fit: cover;
+	border-radius: 8px;
+	transition: transform 0.5s ease;
+
 	&:hover {
-		opacity: 0.3;
+		transform: scale(1.5);
 	}
-	border-radius: 2rem;
 `;
 const Theme = styled.a`
 	display: flex;
 	flex-direction: column;
+	position: relative;
+	text-align: center;
+	overflow: hidden;
 `;
 const ArtTitle = styled.label`
-	color: black;
-	font-size: 1.1rem;
+	font-size: 1.5rem;
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+`;
+const Overlay = styled.div`
+	overflow: hidden;
+`;
+const Text = styled.div`
+	color: white;
 	text-align: center;
 	margin-top: 1rem;
 `;
+const Desc = styled.label`
+	font-size: 1.1rem;
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+`;
+const Button = styled.div`
+	font-size: 1.1rem;
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+	border: solid 2px;
+	border-radius: 3%;
+	padding: 3px 8px;
+`;
+// const Line = styled.p`
+// 	color: white;
+// 	font-size: 3rem;
+// 	text-align: center;
+// 	margin-top: 1rem;
+// 	position: absolute;
+// 	top: 10%;
+// 	left: 50%;
+// 	transform: translate(-50%, -50%);
+// 	z-index: 5;
+// `;

@@ -8,7 +8,7 @@ export default function ImageDetail({ image }) {
 	return (
 		<Wrapper>
 			<ImageArea>
-				<Image src={image} width='100%' cursor='hand' />
+				<Image src={image} width='100%' />
 			</ImageArea>
 		</Wrapper>
 	);

@@ -11,24 +11,28 @@ export default function ThemeView() {
 			image: "/kd.jpg",
 			link: "/artworks",
 			theme: "추상 예술",
+			info: "세기의 여성 화가, 프리다칼로의 작품",
 		},
 		{
 			id: 2,
 			image: "/pr.jpg",
 			link: "/artworks",
 			theme: "프리다 칼로",
+			info: "세기의 여성 화가, 프리다칼로의 작품",
 		},
 		{
 			id: 3,
 			image: "/mn.jpg",
 			link: "/artworks",
 			theme: "풍경화",
+			info: "세기의 여성 화가, 프리다칼로의 작품",
 		},
 		{
 			id: 4,
 			image: "/dg.jpg",
 			link: "/artworks",
 			theme: "인상주의",
+			info: "세기의 여성 화가, 프리다칼로의 작품",
 		},
 	];
 	return (
@@ -41,6 +45,7 @@ export default function ThemeView() {
 						link={artwork.link}
 						image={artwork.image}
 						theme={artwork.theme}
+						info={artwork.info}
 					/>
 				))}
 			</Images>
