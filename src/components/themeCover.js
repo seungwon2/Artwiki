@@ -7,14 +7,16 @@ export default function ThemeCover({ link, image, theme, info }) {
 	return (
 		<Wrapper>
 			<Theme href={link}>
-				<Overlay>
-					<Image src={image} />
-				</Overlay>
-				<Text>
-					<ArtTitle>{theme}</ArtTitle>
-					<Desc>{info}</Desc>
-					<Button>자세히 보기</Button>
-				</Text>
+				<Black>
+					<Overlay>
+						<Image src={image} />
+					</Overlay>
+					<Text>
+						<ArtTitle>{theme}</ArtTitle>
+						<Desc>{info}</Desc>
+						<Button>자세히 보기</Button>
+					</Text>
+				</Black>
 			</Theme>
 		</Wrapper>
 	);
@@ -52,12 +54,9 @@ const ArtTitle = styled.label`
 `;
 const Overlay = styled.div`
 	overflow: hidden;
-	background: black;
-	color: black;
-	background-color: black;
-	opacity: 0.7;
+	opacity: 0.5;
 	&:hover {
-		opacity: 1;
+		opacity: 0.9;
 	}
 `;
 const Text = styled.div`
@@ -83,4 +82,9 @@ const Button = styled.div`
 	border: solid 2px;
 	border-radius: 3%;
 	padding: 3px 8px;
+`;
+const Black = styled.div`
+	background-color: black;
+	border-radius: 8px;
+	height: 28rem;
 `;
