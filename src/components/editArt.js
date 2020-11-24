@@ -55,8 +55,8 @@ export default function EditArt({ image }) {
 
 	const handleSubmit = () => {
 		axios
-			.post(
-				"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/",
+			.patch(
+				"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1234/",
 				{ annotations }
 			)
 			.then(console.log(annotation))
