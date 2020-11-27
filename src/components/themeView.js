@@ -11,7 +11,7 @@ export default function ThemeView() {
 			image: "/kd.jpg",
 			link: "/artworks",
 			theme: "추상 예술",
-			info: "세기의 여성 화가, 프리다칼로의 작품",
+			info: "예술의 새로운 발견, 추상 예술",
 		},
 		{
 			id: 2,
@@ -25,14 +25,14 @@ export default function ThemeView() {
 			image: "/mn.jpg",
 			link: "/artworks",
 			theme: "풍경화",
-			info: "세기의 여성 화가, 프리다칼로의 작품",
+			info: "자연을 그리는 방법, 여러 화가의 풍경화",
 		},
 		{
 			id: 4,
 			image: "/dg.jpg",
 			link: "/artworks",
 			theme: "인상주의",
-			info: "세기의 여성 화가, 프리다칼로의 작품",
+			info: "예술의 새로운 시대, 인상주의",
 		},
 	];
 	return (

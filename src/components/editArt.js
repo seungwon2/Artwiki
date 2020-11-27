@@ -23,29 +23,25 @@ export default function EditArt({ image }) {
 				setAnnotations(data.annotations);
 			})
 			.catch(function (error) {
-				if (error.response) {
-					// 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
-				} else if (error.request) {
-					// 요청이 이루어 졌으나 응답을 받지 못했습니다.
-					// `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
-					// Node.js의 http.ClientRequest 인스턴스입니다.
-					console.log("두번째" + error.request);
-				} else {
-					// 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
-					console.log("Error", error.message);
-				}
 				console.log(error.config);
 			});
 	}, []);
+	const handleSubmit = () => {
+		axios
+			.patch(
+				"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1234/",
+				{ annotations }
+			)
+			.then(console.log(annotation))
+			.catch(function (error) {
+				console.log(error.config);
+			});
+		console.log("clicked");
+	};
 	const [annotation, setAnnotation] = useState({});
 	const [activeAnnotations, setActiveAnnotations] = useState([]);
-	const [isAnnotated, setIsAnotated] = useState(false);
 
 	const onChange = (annotation) => {
-		setIsAnotated(true);
 		setAnnotation(annotation);
 	};
 	const onSubmit = (annotation) => {
@@ -80,33 +76,6 @@ export default function EditArt({ image }) {
 		console.log("after: " + annotations);
 	};
 
-	const handleSubmit = () => {
-		axios
-			.patch(
-				"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1234/",
-				{ annotations }
-			)
-			.then(console.log(annotation))
-			.catch(function (error) {
-				if (error.response) {
-					// 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
-
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
-				} else if (error.request) {
-					// 요청이 이루어 졌으나 응답을 받지 못했습니다.
-					// `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
-					// Node.js의 http.ClientRequest 인스턴스입니다.
-					console.log(error.request);
-				} else {
-					// 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
-					console.log("Error", error.message);
-				}
-				console.log(error.config);
-			});
-		console.log("clicked");
-	};
 	const handleQuit = () => {
 		console.log("quit");
 	};
@@ -145,7 +114,7 @@ export default function EditArt({ image }) {
 					<ButtonArea>
 						<Button onClick={handleSubmit}>편집 저장</Button>
 						<Blank />
-						<Button onClick={handleQuit}>편집 취소</Button>
+						<Button onClick={handleQuit}>편집 완료</Button>
 					</ButtonArea>
 				</LabelBox>
 			</ImageAnnotation>
