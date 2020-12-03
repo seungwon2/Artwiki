@@ -1,121 +1,117 @@
 /** @format */
 
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import Annotation from "react-image-annotation";
 import { RectangleSelector } from "react-image-annotation/lib/selectors";
 import axios from "axios";
 
-import TextEditor from "../src/components/TextEditor";
 import NavBar from "../src/components/navBar";
 import ThreadedContent from "../src/components/threadedContent";
 import ThreadedEditor from "../src/components/threadedEditor";
 
-export default class Threaded extends Component {
-	state = {
-		activeAnnotations: [],
-		annotations: [],
-		annotation: {},
-	};
-	//서버에서 저장되어있는 데이터 불러오기
-	componentDidMount() {
-		// 	axios
-		// 		.get(
-		// 			"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1234/"
-		// 		)
-		// 		.then(({ data }) => {
-		// 			console.log(data.annotations);
-		// 			this.setState({ annotations: data.annotations });
-		// 		})
-		// 		.catch(function (error) {
-		// 			console.log(error.config);
-		// 		});
-	}
+export default function Threaded() {
+	const [annotations, setAnnotations] = useState([]);
+	const [annotation, setAnnotation] = useState({});
+	const [activeAnnotations, setActiveAnnotations] = useState([]);
 
-	onChange = (annotation) => {
-		this.setState({ annotation });
+	// useEffect(() => {
+	// 	axios
+	// 		.get(
+	// 			"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1234/"
+	// 		)
+	// 		.then(({ data }) => {
+	// 			console.log(data.annotations);
+	// 			setAnnotations(data.annotations);
+	// 		})
+	// 		.catch(function (error) {
+	// 			console.log(error.config);
+	// 		});
+	// }, []);
+	// const handleSubmit = () => {
+	// 	axios
+	// 		.patch(
+	// 			"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1234/",
+	// 			{ annotations }
+	// 		)
+	// 		.then(console.log(annotation))
+	// 		.catch(function (error) {
+	// 			console.log(error.config);
+	// 		});
+	// 	console.log("clicked");
+	// };
+
+	const onChange = (annotation) => {
+		setAnnotation(annotation);
 	};
 
-	onSubmit = (annotation) => {
+	const onSubmit = (annotation) => {
 		const { geometry, data } = annotation;
-
-		this.setState({
-			annotation: {},
-			annotations: this.state.annotations.concat({
-				geometry,
-				data: {
-					...data,
-					id: Math.random(),
-				},
-			}),
-		});
-		console.log(this.state.annotations);
+		setAnnotation({});
+		setAnnotations([
+			...annotations,
+			{ geometry, data: { ...data, id: Math.random() } },
+		]);
+		console.log(annotations);
 	};
 
-	renderEditor = (props) => {
+	const renderEditor = (props) => {
 		const { geometry } = props.annotation;
 		if (!geometry) return null;
 
 		return <ThreadedEditor {...props} />;
 	};
 
-	renderContent = ({ key, annotation }) => {
+	const renderContent = ({ key, annotation }) => {
 		return (
 			<ThreadedContent
 				key={key}
 				annotation={annotation}
-				annotations={this.state.annotations}
-				setAnnotations={(annotations) => this.setState({ annotations })}
-				onFocus={this.onFocus(key)}
-				onBlur={this.onBlur(key)}
+				annotations={annotations}
+				setAnnotations={setAnnotations}
+				onFocus={onFocus(key)}
+				onBlur={onBlur(key)}
 			/>
 		);
 	};
 
-	onFocus = (id) => (e) => {
-		this.setState({
-			activeAnnotations: [...this.state.activeAnnotations, id],
-		});
+	const onFocus = (id) => (e) => {
+		setActiveAnnotations([...activeAnnotations, id]);
 	};
 
-	onBlur = (id) => (e) => {
-		const index = this.state.activeAnnotations.indexOf(id);
-
-		this.setState({
-			activeAnnotations: [
-				...this.state.activeAnnotations.slice(0, index),
-				...this.state.activeAnnotations.slice(index + 1),
-			],
-		});
+	const onBlur = (id) => (e) => {
+		const index = activeAnnotations.indexOf(id);
+		setActiveAnnotations([
+			...activeAnnotations.slice(0, index),
+			...activeAnnotations.slice(index + 1),
+		]);
+		console.log(activeAnnotations);
 	};
-
-	activeAnnotationComparator = (a, b) => {
+	const activeAnnotationComparator = (a, b) => {
 		return a.data.id === b;
 	};
 
-	render() {
-		return (
-			<>
-				<NavBar />
-				<Wrapper>
-					<Annotation
-						src='/starrynight.jpeg'
-						alt='Two pebbles anthropomorphized holding hands'
-						activeAnnotationComparator={this.activeAnnotationComparator}
-						activeAnnotations={this.state.activeAnnotations}
-						annotations={this.state.annotations}
-						type={this.state.type}
-						value={this.state.annotation}
-						renderEditor={this.renderEditor}
-						renderContent={this.renderContent}
-						onChange={this.onChange}
-						onSubmit={this.onSubmit}
-					/>
-				</Wrapper>
-			</>
-		);
-	}
+	return (
+		<>
+			<NavBar />
+			<ArtWorkWrapper>
+				<Annotation
+					src='/starrynight.jpeg'
+					alt='Two pebbles anthropomorphized holding hands'
+					activeAnnotationComparator={activeAnnotationComparator}
+					activeAnnotations={activeAnnotations}
+					annotations={annotations}
+					type={RectangleSelector.TYPE}
+					value={annotation}
+					renderEditor={renderEditor}
+					renderContent={renderContent}
+					onChange={onChange}
+					onSubmit={onSubmit}
+				/>
+			</ArtWorkWrapper>
+		</>
+	);
 }
-const Wrapper = styled.div`
+const ArtWorkWrapper = styled.div`
 	margin: 10rem;
 `;
