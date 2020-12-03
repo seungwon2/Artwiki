@@ -13,7 +13,7 @@ export default function Home() {
 	return (
 		<Wrapper>
 			<NavBar />
-			{/* <Carousel /> */}
+			<Carousel />
 			<Intro />
 			<ThemeView />
 			<AllView />
