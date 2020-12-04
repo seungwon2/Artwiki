@@ -22,29 +22,45 @@ export default function EditArt({ id }) {
 
 	useEffect(() => {
 		console.log("id 출력: ", router.query.id);
-
-		// 	axios
-		// 		.get(
-		// 			`http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/${id}/`
-		// 		)
-		// 		.then(({ data }) => {
-		// 			console.log(data.annotations);
-		// 			setAnnotations(data.annotations);
-		// 		})
-		// 		.catch(function (error) {
-		// 			console.log(error.config);
-		// 		});
+		axios
+			.get(
+				`http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1/`
+			)
+			.then(({ data }) => {
+				console.log("data찐: ", data);
+				console.log("location" + data.location);
+				console.log("data: " + data.annotations);
+				setAnnotations(data.annotations);
+			})
+			.catch(function (error) {
+				console.log(error.config);
+			});
 	}, []);
 	const handleSubmit = () => {
-		// axios
-		// 	.patch(
-		// 		"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1234/",
-		// 		{ annotations }
-		// 	)
-		// 	.then(console.log(annotation))
-		// 	.catch(function (error) {
-		// 		console.log(error.config);
-		// 	});
+		console.log("submit: " + annotations);
+		axios
+			.patch(
+				`http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1/`,
+				{ annotations }
+			)
+			.then(console.log(annotation))
+			.catch(function (error) {
+				if (error.response) {
+					// 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+					console.log(error.response.data);
+					console.log(error.response.status);
+					console.log(error.response.headers);
+				} else if (error.request) {
+					// 요청이 이루어 졌으나 응답을 받지 못했습니다.
+					// `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+					// Node.js의 http.ClientRequest 인스턴스입니다.
+					console.log(error.request);
+				} else {
+					// 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+					console.log("Error", error.message);
+				}
+				console.log(error.config);
+			});
 		console.log("clicked");
 		console.log(annotations);
 	};
@@ -66,9 +82,9 @@ export default function EditArt({ id }) {
 		setAnnotation({});
 		setAnnotations([
 			...annotations,
-			{ geometry, data: { ...data, id: Math.random() } },
+			{ data: { id: Math.random(), ...data }, geometry },
 		]);
-		console.log(annotations);
+		console.log("작은 서브밋: " + annotations);
 	};
 
 	const renderEditor = (props) => {
@@ -135,7 +151,8 @@ export default function EditArt({ id }) {
 					onSubmit={onSubmit}
 				/>
 			</ArtWorkWrapper>
-			<LabelBox>
+			<Button onClick={handleSubmit}>편집 저장</Button>
+			{/* <LabelBox>
 				<Label>Annotation List</Label>
 				<Scrollbar style={{ height: 800 }}>
 					{annotations.map((annotation) => (
@@ -150,11 +167,11 @@ export default function EditArt({ id }) {
 					))}
 				</Scrollbar>
 				<ButtonArea>
-					<Button onClick={handleSubmit}>편집 저장</Button>
+					
 					<Blank />
 					<Button>편집 완료</Button>
 				</ButtonArea>
-			</LabelBox>
+			</LabelBox> */}
 		</>
 	);
 }
