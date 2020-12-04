@@ -6,14 +6,16 @@ import Annotation from "react-image-annotation";
 import axios from "axios";
 import { RectangleSelector } from "react-image-annotation/lib/selectors";
 import NavBar from "../../../src/components/navBar";
+import { useRouter } from "next/router";
 
 export default function Label() {
+	const router = useRouter();
 	const [annotations, setAnnotations] = useState([]);
 
 	useEffect(() => {
 		axios
 			.get(
-				"http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1234/"
+				`http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/${id}/`
 			)
 			.then(({ data }) => {
 				console.log(data.annotations);
@@ -22,6 +24,8 @@ export default function Label() {
 			.catch(function (error) {
 				console.log(error.config);
 			});
+
+		console.log("id 출력: ", router.query.id);
 	}, []);
 	const [annotation, setAnnotation] = useState({});
 	const [activeAnnotations, setActiveAnnotations] = useState([]);
