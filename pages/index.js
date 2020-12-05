@@ -13,6 +13,7 @@ export default function Home() {
 	return (
 		<Wrapper>
 			<NavBar />
+			<Phantom />
 			<Carousel />
 			<Intro />
 			<ThemeView />
@@ -22,3 +23,6 @@ export default function Home() {
 }
 
 const Wrapper = styled.div``;
+const Phantom = styled.div`
+	margin-top: 3rem;
+`;

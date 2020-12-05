@@ -27,6 +27,7 @@ const Wrapper = styled.div`
 	justify-content: space-between;
 	padding: 1.5rem;
 	align-items: center;
+	box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.11);
 `;
 const Title = styled.a`
 	color: black;
