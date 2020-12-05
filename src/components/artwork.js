@@ -10,7 +10,6 @@ import { Card } from "antd";
 export default function ArtWork({ image, title, artist, shortdesc, id }) {
 	const router = useRouter();
 	return (
-		// <Link href='/detail/[id]' as={`/detail/${id}`} id={id}>
 		<Wrapper
 			onClick={() => {
 				router.push({ pathname: "/detail/[id]", query: { id: id } });
@@ -21,7 +20,6 @@ export default function ArtWork({ image, title, artist, shortdesc, id }) {
 				<Desc>{shortdesc}</Desc>
 			</Card>
 		</Wrapper>
-		// </Link>
 	);
 }
 

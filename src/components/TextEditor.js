@@ -3,6 +3,21 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
+function TextEditor(props) {
+	return (
+		<React.Fragment>
+			<Inner>
+				<textarea
+					placeholder='Write description'
+					onFocus={props.onFocus}
+					onBlur={props.onBlur}
+					onChange={props.onChange}
+					value={props.value}></textarea>
+			</Inner>
+			{props.value && <Button onClick={props.onSubmit}>Submit</Button>}
+		</React.Fragment>
+	);
+}
 const Inner = styled.div`
 	padding: 8px 16px;
 	textarea {
@@ -33,21 +48,5 @@ const Button = styled.div`
 		background: #eeeeee;
 	}
 `;
-
-function TextEditor(props) {
-	return (
-		<React.Fragment>
-			<Inner>
-				<textarea
-					placeholder='Write description'
-					onFocus={props.onFocus}
-					onBlur={props.onBlur}
-					onChange={props.onChange}
-					value={props.value}></textarea>
-			</Inner>
-			{props.value && <Button onClick={props.onSubmit}>Submit</Button>}
-		</React.Fragment>
-	);
-}
 
 export default TextEditor;

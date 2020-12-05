@@ -5,12 +5,9 @@ import styled, { keyframes } from "styled-components";
 import Annotation from "react-image-annotation";
 import { RectangleSelector } from "react-image-annotation/lib/selectors";
 import axios from "axios";
-import Scrollbar from "react-scrollbars-custom";
-
-import NavBar from "./navBar";
 import ThreadedContent from "./threadedContent";
 import ThreadedEditor from "./threadedEditor";
-import Comment from "./comment";
+
 import { Button } from "antd";
 import { useRouter } from "next/router";
 
@@ -152,26 +149,6 @@ export default function EditArt({ id }) {
 				/>
 			</ArtWorkWrapper>
 			<Button onClick={handleSubmit}>편집 저장</Button>
-			{/* <LabelBox>
-				<Label>Annotation List</Label>
-				<Scrollbar style={{ height: 800 }}>
-					{annotations.map((annotation) => (
-						<Comment
-							onMouseOver={onMouseOver(annotation.data.comments.id)}
-							onMouseOut={onMouseOut(annotation.data.comments.id)}
-							key={annotation.data.comments.id}
-							data={annotation.data.comments.text}
-							id={annotation.data.comments.id}
-							onClick={onClick}
-						/>
-					))}
-				</Scrollbar>
-				<ButtonArea>
-					
-					<Blank />
-					<Button>편집 완료</Button>
-				</ButtonArea>
-			</LabelBox> */}
 		</>
 	);
 }
