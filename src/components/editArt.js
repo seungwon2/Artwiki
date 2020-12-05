@@ -16,18 +16,20 @@ export default function EditArt({ id }) {
 	const [annotations, setAnnotations] = useState([]);
 	const [annotation, setAnnotation] = useState({});
 	const [activeAnnotations, setActiveAnnotations] = useState([]);
+	const [picture, setPicture] = useState();
 
 	useEffect(() => {
 		console.log("id 출력: ", router.query.id);
 		axios
 			.get(
-				`http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1/`
+				`http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/${router.query.id}/`
 			)
 			.then(({ data }) => {
 				console.log("data찐: ", data);
 				console.log("location" + data.location);
 				console.log("data: " + data.annotations);
 				setAnnotations(data.annotations);
+				setPicture(data.image);
 			})
 			.catch(function (error) {
 				console.log(error.config);
@@ -37,7 +39,7 @@ export default function EditArt({ id }) {
 		console.log("submit: " + annotations);
 		axios
 			.patch(
-				`http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/1/`,
+				`http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/${router.query.id}/`,
 				{ annotations }
 			)
 			.then(console.log(annotation))
@@ -135,7 +137,7 @@ export default function EditArt({ id }) {
 		<>
 			<ArtWorkWrapper>
 				<Annotation
-					src='/starrynight.jpeg'
+					src={picture}
 					alt='Two pebbles anthropomorphized holding hands'
 					activeAnnotationComparator={activeAnnotationComparator}
 					activeAnnotations={activeAnnotations}

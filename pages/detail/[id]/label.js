@@ -4,22 +4,26 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Annotation from "react-image-annotation";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { RectangleSelector } from "react-image-annotation/lib/selectors";
 import NavBar from "../../../src/components/navBar";
-import { useRouter } from "next/router";
+import ThreadedContent from "../../../src/components/threadedContent";
+import ThreadedEditor from "../../../src/components/threadedEditor";
 
-export default function Label() {
+export default function Label({ id }) {
 	const router = useRouter();
 	const [annotations, setAnnotations] = useState([]);
+	const [picture, setPicture] = useState();
 
 	useEffect(() => {
 		axios
 			.get(
-				`http://ec2-54-180-96-236.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/${id}/`
+				`http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/${router.query.id}/`
 			)
 			.then(({ data }) => {
-				console.log(data.annotations);
+				console.log(data);
 				setAnnotations(data.annotations);
+				setPicture(data.image);
 			})
 			.catch(function (error) {
 				console.log(error.config);
@@ -30,21 +34,74 @@ export default function Label() {
 	const [annotation, setAnnotation] = useState({});
 	const [activeAnnotations, setActiveAnnotations] = useState([]);
 
+	const onClick = (id) => {
+		const newAnnotations = [...annotations];
+		console.log("before: " + annotations);
+		setAnnotations(
+			newAnnotations.filter((annotation) => annotation.data.id !== id)
+		);
+		console.log("after: " + annotations);
+	};
+
 	const onChange = (annotation) => {
 		setAnnotation(annotation);
 	};
+
 	const onSubmit = (annotation) => {
 		const { geometry, data } = annotation;
 		setAnnotation({});
 		setAnnotations([
 			...annotations,
-			{ geometry, data: { ...data, id: Math.random() } },
+			{ data: { id: Math.random(), ...data }, geometry },
 		]);
-		console.log(annotations);
+		console.log("작은 서브밋: " + annotations);
 	};
 
+	const renderEditor = (props) => {
+		const { geometry } = props.annotation;
+		if (!geometry) return null;
+
+		return <ThreadedEditor {...props} />;
+	};
+
+	const renderContent = ({ key, annotation }) => {
+		return (
+			<ThreadedContent
+				key={key}
+				annotation={annotation}
+				annotations={annotations}
+				setAnnotations={setAnnotations}
+				onFocus={onFocus(key)}
+				onBlur={onBlur(key)}
+			/>
+		);
+	};
+
+	const onFocus = (id) => (e) => {
+		setActiveAnnotations([...activeAnnotations, id]);
+	};
+
+	const onBlur = (id) => (e) => {
+		const index = activeAnnotations.indexOf(id);
+		setActiveAnnotations([
+			...activeAnnotations.slice(0, index),
+			...activeAnnotations.slice(index + 1),
+		]);
+		console.log(activeAnnotations);
+	};
 	const activeAnnotationComparator = (a, b) => {
 		return a.data.id === b;
+	};
+	const onMouseOver = (id) => (e) => {
+		setActiveAnnotations([...activeAnnotations, id]);
+	};
+	const onMouseOut = (id) => (e) => {
+		const index = activeAnnotations.indexOf(id);
+		setActiveAnnotations([
+			...activeAnnotations.slice(0, index),
+			...activeAnnotations.slice(index + 1),
+		]);
+		console.log(activeAnnotations);
 	};
 
 	return (
@@ -52,15 +109,16 @@ export default function Label() {
 			<NavBar />
 			<ImageArea>
 				<Annotation
-					src='/starrynight.jpeg'
-					alt='Two pebbles anthropomorphized holding hands'
+					src={picture}
+					activeAnnotationComparator={activeAnnotationComparator}
+					activeAnnotations={activeAnnotations}
 					annotations={annotations}
 					type={RectangleSelector.TYPE}
 					value={annotation}
+					renderEditor={renderEditor}
+					renderContent={renderContent}
 					onChange={onChange}
 					onSubmit={onSubmit}
-					activeAnnotationComparator={activeAnnotationComparator}
-					activeAnnotations={activeAnnotations}
 				/>
 			</ImageArea>
 		</Wrapper>
