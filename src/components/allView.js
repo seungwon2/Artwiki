@@ -10,9 +10,7 @@ export default function AllView() {
 	useEffect(() => {
 		console.log("dd");
 		axios
-			.get(
-				"http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/"
-			)
+			.get("https://www.artwiki-sh.com/api/artwork/")
 			.then(({ data }) => {
 				console.log(data.annotations);
 				setArtWorks(data);

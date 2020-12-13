@@ -9,8 +9,8 @@ import { RectangleSelector } from "react-image-annotation/lib/selectors";
 import NavBar from "../../../src/components/navBar";
 import ThreadedContent from "../../../src/components/threadedContent";
 import ThreadedEditor from "../../../src/components/threadedEditor";
-
-export default function Label({ id }) {
+import { Button } from "antd";
+export default function Label() {
 	const router = useRouter();
 	const [annotations, setAnnotations] = useState([]);
 	const [picture, setPicture] = useState();
@@ -121,6 +121,15 @@ export default function Label({ id }) {
 					onSubmit={onSubmit}
 				/>
 			</ImageArea>
+			<Button
+				onClick={() => {
+					router.push({
+						pathname: "/detail/[id]",
+						query: { id: router.query.id },
+					});
+				}}>
+				돌아가기
+			</Button>
 		</Wrapper>
 	);
 }

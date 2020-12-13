@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Annotation from "react-image-annotation";
 import { RectangleSelector } from "react-image-annotation/lib/selectors";
 import axios from "axios";
@@ -11,7 +11,7 @@ import ThreadedEditor from "./threadedEditor";
 import { Button } from "antd";
 import { useRouter } from "next/router";
 
-export default function EditArt({ id }) {
+export default function EditArt() {
 	const router = useRouter();
 	const [annotations, setAnnotations] = useState([]);
 	const [annotation, setAnnotation] = useState({});
@@ -21,9 +21,7 @@ export default function EditArt({ id }) {
 	useEffect(() => {
 		console.log("id 출력: ", router.query.id);
 		axios
-			.get(
-				`http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/${router.query.id}/`
-			)
+			.get(`https://www.artwiki-sh.com/api/artwork/${router.query.id}/`)
 			.then(({ data }) => {
 				console.log("data찐: ", data);
 				console.log("location" + data.location);
@@ -38,30 +36,14 @@ export default function EditArt({ id }) {
 	const handleSubmit = () => {
 		console.log("submit: " + annotations);
 		axios
-			.patch(
-				`http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/${router.query.id}/`,
-				{ annotations }
-			)
+			.patch(`https://www.artwiki-sh.com/api/artwork/${router.query.id}/`, {
+				annotations,
+			})
 			.then(console.log(annotation))
-			.catch(function (error) {
-				if (error.response) {
-					// 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
-				} else if (error.request) {
-					// 요청이 이루어 졌으나 응답을 받지 못했습니다.
-					// `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
-					// Node.js의 http.ClientRequest 인스턴스입니다.
-					console.log(error.request);
-				} else {
-					// 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
-					console.log("Error", error.message);
-				}
-				console.log(error.config);
-			});
+			.catch(function (error) {});
 		console.log("clicked");
 		console.log(annotations);
+		router.push({ pathname: "/detail/[id]", query: { id: router.query.id } });
 	};
 	const onClick = (id) => {
 		const newAnnotations = [...annotations];
@@ -83,7 +65,7 @@ export default function EditArt({ id }) {
 			...annotations,
 			{ data: { id: Math.random(), ...data }, geometry },
 		]);
-		console.log("작은 서브밋: " + annotations);
+		console.log(annotations);
 	};
 
 	const renderEditor = (props) => {
@@ -137,8 +119,7 @@ export default function EditArt({ id }) {
 		<>
 			<ArtWorkWrapper>
 				<Annotation
-					src={picture}
-					alt='Two pebbles anthropomorphized holding hands'
+					src='/starrynight.jpeg'
 					activeAnnotationComparator={activeAnnotationComparator}
 					activeAnnotations={activeAnnotations}
 					annotations={annotations}
@@ -150,7 +131,19 @@ export default function EditArt({ id }) {
 					onSubmit={onSubmit}
 				/>
 			</ArtWorkWrapper>
-			<Button onClick={handleSubmit}>편집 저장</Button>
+			<ButtonArea>
+				<Button
+					onClick={() => {
+						router.push({
+							pathname: "/detail/[id]",
+							query: { id: router.query.id },
+						});
+					}}>
+					편집 취소
+				</Button>
+				<Phantom />
+				<Button onClick={handleSubmit}>편집 저장</Button>
+			</ButtonArea>
 		</>
 	);
 }
@@ -167,7 +160,7 @@ const Label = styled.label`
 const ButtonArea = styled.div`
 	display: flex;
 	justify-content: center;
-	margin-top: 0.5rem;
+	margin: 0rem 15rem 5rem 15rem;
 `;
 const Blank = styled.div`
 	margin: 0 1rem;
@@ -180,4 +173,7 @@ const LabelBox = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	width: 30%;
+`;
+const Phantom = styled.div`
+	width: 3rem;
 `;

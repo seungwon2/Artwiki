@@ -9,7 +9,7 @@ import NavBar from "../../src/components/navBar";
 import ImageDetail from "../../src/components/imageDetail";
 import ImageInfo from "../../src/components/imageInfo";
 
-export default function Detail(props) {
+export default function Detail() {
 	const router = useRouter();
 
 	useEffect(() => {
