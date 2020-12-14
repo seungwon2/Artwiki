@@ -9,7 +9,7 @@ export default function Edit() {
 	return (
 		<Wrapper>
 			<NavBar />
-			<EditArt image='/starrynight.jpeg' />
+			<EditArt />
 		</Wrapper>
 	);
 }

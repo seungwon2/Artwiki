@@ -119,7 +119,7 @@ export default function EditArt() {
 		<>
 			<ArtWorkWrapper>
 				<Annotation
-					src='/starrynight.jpeg'
+					src={picture}
 					activeAnnotationComparator={activeAnnotationComparator}
 					activeAnnotations={activeAnnotations}
 					annotations={annotations}

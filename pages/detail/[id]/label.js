@@ -17,30 +17,21 @@ export default function Label() {
 
 	useEffect(() => {
 		axios
-			.get(
-				`http://ec2-15-164-224-168.ap-northeast-2.compute.amazonaws.com:8000/api/artwork/${router.query.id}/`
-			)
+			.get(`https://www.artwiki-sh.com/api/artwork/${router.query.id}/`)
 			.then(({ data }) => {
-				console.log(data);
 				setAnnotations(data.annotations);
 				setPicture(data.image);
 			})
-			.catch(function (error) {
-				console.log(error.config);
-			});
-
-		console.log("id 출력: ", router.query.id);
+			.catch(function (error) {});
 	}, []);
 	const [annotation, setAnnotation] = useState({});
 	const [activeAnnotations, setActiveAnnotations] = useState([]);
 
 	const onClick = (id) => {
 		const newAnnotations = [...annotations];
-		console.log("before: " + annotations);
 		setAnnotations(
 			newAnnotations.filter((annotation) => annotation.data.id !== id)
 		);
-		console.log("after: " + annotations);
 	};
 
 	const onChange = (annotation) => {
@@ -54,7 +45,6 @@ export default function Label() {
 			...annotations,
 			{ data: { id: Math.random(), ...data }, geometry },
 		]);
-		console.log("작은 서브밋: " + annotations);
 	};
 
 	const renderEditor = (props) => {
@@ -87,7 +77,6 @@ export default function Label() {
 			...activeAnnotations.slice(0, index),
 			...activeAnnotations.slice(index + 1),
 		]);
-		console.log(activeAnnotations);
 	};
 	const activeAnnotationComparator = (a, b) => {
 		return a.data.id === b;
@@ -101,7 +90,6 @@ export default function Label() {
 			...activeAnnotations.slice(0, index),
 			...activeAnnotations.slice(index + 1),
 		]);
-		console.log(activeAnnotations);
 	};
 
 	return (
@@ -121,15 +109,17 @@ export default function Label() {
 					onSubmit={onSubmit}
 				/>
 			</ImageArea>
-			<Button
-				onClick={() => {
-					router.push({
-						pathname: "/detail/[id]",
-						query: { id: router.query.id },
-					});
-				}}>
-				돌아가기
-			</Button>
+			<ButtonCover>
+				<Button
+					onClick={() => {
+						router.push({
+							pathname: "/detail/[id]",
+							query: { id: router.query.id },
+						});
+					}}>
+					돌아가기
+				</Button>
+			</ButtonCover>
 		</Wrapper>
 	);
 }
@@ -141,4 +131,9 @@ const Wrapper = styled.div`
 `;
 const ImageArea = styled.div`
 	margin: 10rem 20rem;
+`;
+const ButtonCover = styled.div`
+	display: flex;
+	justify-content: center;
+	margin-bottom: 5rem;
 `;

@@ -8,16 +8,12 @@ import axios from "axios";
 export default function AllView() {
 	const [ArtWorks, setArtWorks] = useState([]);
 	useEffect(() => {
-		console.log("dd");
 		axios
 			.get("https://www.artwiki-sh.com/api/artwork/")
 			.then(({ data }) => {
-				console.log(data.annotations);
 				setArtWorks(data);
 			})
-			.catch(function (error) {
-				console.log(error.config);
-			});
+			.catch(function (error) {});
 	}, []);
 
 	return (
