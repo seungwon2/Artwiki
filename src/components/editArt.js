@@ -43,7 +43,6 @@ export default function EditArt() {
 			.catch(function (error) {});
 		console.log("clicked");
 		console.log(annotations);
-		router.push({ pathname: "/detail/[id]", query: { id: router.query.id } });
 	};
 	const onClick = (id) => {
 		const newAnnotations = [...annotations];
