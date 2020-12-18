@@ -7,7 +7,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { RectangleSelector } from "react-image-annotation/lib/selectors";
 import NavBar from "../../../src/components/navBar";
-import ThreadedContent from "../../../src/components/threadedContent";
+import ThreadedContent from "../../../src/components/threadedContent2";
 import ThreadedEditor from "../../../src/components/threadedEditor";
 import { Button } from "antd";
 export default function Label() {

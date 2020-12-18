@@ -10,9 +10,9 @@
 	"dependencies": {
 		"@ant-design/icons": "^4.3.0",
 		"ant-design": "^1.0.0",
-		"antd": "^4.9.2",
+		"antd": "^4.9.4",
 		"axios": "^0.21.0",
-		"caniuse-lite": "^1.0.30001165",
+		"caniuse-lite": "^1.0.30001168",
 		"form-data": "^3.0.0",
 		"moment": "^2.29.1",
 		"next": "^10.0.3",
@@ -24,7 +24,7 @@
 	},
 	"devDependencies": {
 		"@babel/preset-react": "^7.12.10",
-		"@types/node": "^14.14.13",
+		"@types/node": "^14.14.14",
 		"@types/react": "^17.0.0",
 		"@types/react-dom": "^17.0.0",
 		"babel-plugin-styled-components": "^1.12.0",

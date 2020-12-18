@@ -138,7 +138,7 @@ export default function EditArt() {
 							query: { id: router.query.id },
 						});
 					}}>
-					편집 취소
+					돌아가기
 				</Button>
 				<Phantom />
 				<Button onClick={handleSubmit}>편집 저장</Button>
