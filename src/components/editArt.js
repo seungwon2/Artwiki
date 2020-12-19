@@ -23,15 +23,10 @@ export default function EditArt() {
 		axios
 			.get(`https://www.artwiki-sh.com/api/artwork/${router.query.id}/`)
 			.then(({ data }) => {
-				console.log("data찐: ", data);
-				console.log("location" + data.location);
-				console.log("data: " + data.annotations);
 				setAnnotations(data.annotations);
 				setPicture(data.image);
 			})
-			.catch(function (error) {
-				console.log(error.config);
-			});
+			.catch(function (error) {});
 	}, []);
 	const handleSubmit = () => {
 		console.log("submit: " + annotations);
@@ -39,18 +34,14 @@ export default function EditArt() {
 			.patch(`https://www.artwiki-sh.com/api/artwork/${router.query.id}/`, {
 				annotations,
 			})
-			.then(console.log(annotation))
+			.then()
 			.catch(function (error) {});
-		console.log("clicked");
-		console.log(annotations);
 	};
 	const onClick = (id) => {
 		const newAnnotations = [...annotations];
-		console.log("before: " + annotations);
 		setAnnotations(
 			newAnnotations.filter((annotation) => annotation.data.id !== id)
 		);
-		console.log("after: " + annotations);
 	};
 
 	const onChange = (annotation) => {
@@ -64,7 +55,6 @@ export default function EditArt() {
 			...annotations,
 			{ data: { id: Math.random(), ...data }, geometry },
 		]);
-		console.log(annotations);
 	};
 
 	const renderEditor = (props) => {
@@ -97,7 +87,6 @@ export default function EditArt() {
 			...activeAnnotations.slice(0, index),
 			...activeAnnotations.slice(index + 1),
 		]);
-		console.log(activeAnnotations);
 	};
 	const activeAnnotationComparator = (a, b) => {
 		return a.data.id === b;
@@ -111,7 +100,6 @@ export default function EditArt() {
 			...activeAnnotations.slice(0, index),
 			...activeAnnotations.slice(index + 1),
 		]);
-		console.log(activeAnnotations);
 	};
 
 	return (
