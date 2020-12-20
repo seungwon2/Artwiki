@@ -37,11 +37,14 @@ export default function EditArt() {
 			.then()
 			.catch(function (error) {});
 	};
+
 	const onClick = (id) => {
-		const newAnnotations = [...annotations];
-		setAnnotations(
-			newAnnotations.filter((annotation) => annotation.data.id !== id)
-		);
+		const newAnnotations = [...annotations].map((annotation) => {
+			const { data } = annotation;
+			const comments = data.comments.filter((comment) => comment.id !== id);
+			return { ...annotation, data: { ...data, comments } };
+		});
+		setAnnotations(newAnnotations);
 	};
 
 	const onChange = (annotation) => {
@@ -122,7 +125,6 @@ export default function EditArt() {
 				{annotations.map((annotation) => (
 					<Comment
 						data={annotation}
-						id={annotation.id}
 						onMouseOver={onMouseOver}
 						onMouseOut={onMouseOut}
 						key={annotation.id}
