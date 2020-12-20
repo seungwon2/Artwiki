@@ -8,6 +8,7 @@ import axios from "axios";
 import ThreadedContent from "./threadedContent";
 import ThreadedEditor from "./threadedEditor";
 
+import Scrollbar from "react-scrollbars-custom";
 import { Button } from "antd";
 import { useRouter } from "next/router";
 import Comment from "./comment";
@@ -106,32 +107,38 @@ export default function EditArt() {
 	};
 
 	return (
-		<>
-			<ArtWorkWrapper>
-				<Annotation
-					src={picture}
-					activeAnnotationComparator={activeAnnotationComparator}
-					activeAnnotations={activeAnnotations}
-					annotations={annotations}
-					type={RectangleSelector.TYPE}
-					value={annotation}
-					renderEditor={renderEditor}
-					renderContent={renderContent}
-					onChange={onChange}
-					onSubmit={onSubmit}
-				/>
-			</ArtWorkWrapper>
-			<CommentArea>
-				{annotations.map((annotation) => (
-					<Comment
-						data={annotation}
-						onMouseOver={onMouseOver}
-						onMouseOut={onMouseOut}
-						key={annotation.id}
-						onClick={onClick}
+		<Wrapper>
+			<PictureArea>
+				<ImageArea>
+					<Annotation
+						src={picture}
+						activeAnnotationComparator={activeAnnotationComparator}
+						activeAnnotations={activeAnnotations}
+						annotations={annotations}
+						type={RectangleSelector.TYPE}
+						value={annotation}
+						renderEditor={renderEditor}
+						renderContent={renderContent}
+						onChange={onChange}
+						onSubmit={onSubmit}
 					/>
-				))}
-			</CommentArea>
+				</ImageArea>
+				<Phantom />
+				<LabelBox>
+					<Label>Annotation List</Label>
+					<Scrollbar style={{ height: 800 }}>
+						{annotations.map((annotation) => (
+							<Comment
+								data={annotation}
+								onMouseOver={onMouseOver}
+								onMouseOut={onMouseOut}
+								key={annotation.id}
+								onClick={onClick}
+							/>
+						))}
+					</Scrollbar>
+				</LabelBox>
+			</PictureArea>
 			<ButtonArea>
 				<Button
 					onClick={() => {
@@ -145,7 +152,7 @@ export default function EditArt() {
 				<Phantom />
 				<Button onClick={handleSubmit}>편집 저장</Button>
 			</ButtonArea>
-		</>
+		</Wrapper>
 	);
 }
 const ArtWorkWrapper = styled.div`
@@ -178,4 +185,18 @@ const LabelBox = styled.div`
 const Phantom = styled.div`
 	width: 3rem;
 `;
-const CommentArea = styled.div``;
+const CommentArea = styled.div`
+	width: 50%;
+`;
+const PictureArea = styled.div`
+	display: flex;
+	margin: 5rem;
+`;
+const Wrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+const ImageArea = styled.div`
+	width: 65%;
+`;
