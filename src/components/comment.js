@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Button } from "antd";
@@ -9,14 +9,17 @@ export default function Comment({
 	onMouseOver,
 	onMouseOut,
 	key,
-	id,
 	onClick,
 }) {
 	return (
-		<Wrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut} key={key}>
-			<Label>{data}</Label>
-			<Button onClick={() => onClick(id)}>delete</Button>
-		</Wrapper>
+		<>
+			{data.data.comments.map((comment) => (
+				<Wrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut} key={key}>
+					<Label>{comment.text}</Label>
+					<Button onClick={() => onClick(comment.id)}>delete</Button>
+				</Wrapper>
+			))}
+		</>
 	);
 }
 const Wrapper = styled.div`

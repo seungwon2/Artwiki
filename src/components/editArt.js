@@ -10,6 +10,7 @@ import ThreadedEditor from "./threadedEditor";
 
 import { Button } from "antd";
 import { useRouter } from "next/router";
+import Comment from "./comment";
 
 export default function EditArt() {
 	const router = useRouter();
@@ -19,7 +20,6 @@ export default function EditArt() {
 	const [picture, setPicture] = useState();
 
 	useEffect(() => {
-		console.log("id 출력: ", router.query.id);
 		axios
 			.get(`https://www.artwiki-sh.com/api/artwork/${router.query.id}/`)
 			.then(({ data }) => {
@@ -118,6 +118,18 @@ export default function EditArt() {
 					onSubmit={onSubmit}
 				/>
 			</ArtWorkWrapper>
+			<CommentArea>
+				{annotations.map((annotation) => (
+					<Comment
+						data={annotation}
+						id={annotation.id}
+						onMouseOver={onMouseOver}
+						onMouseOut={onMouseOut}
+						key={annotation.id}
+						onClick={onClick}
+					/>
+				))}
+			</CommentArea>
 			<ButtonArea>
 				<Button
 					onClick={() => {
@@ -164,3 +176,4 @@ const LabelBox = styled.div`
 const Phantom = styled.div`
 	width: 3rem;
 `;
+const CommentArea = styled.div``;
