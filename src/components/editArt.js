@@ -39,13 +39,20 @@ export default function EditArt() {
 			.catch(function (error) {});
 	};
 
-	const onClick = (id) => {
+	const onClick = (id, key) => {
 		const newAnnotations = [...annotations].map((annotation) => {
 			const { data } = annotation;
 			const comments = data.comments.filter((comment) => comment.id !== id);
 			return { ...annotation, data: { ...data, comments } };
 		});
 		setAnnotations(newAnnotations);
+		newAnnotations.map((annotation) => {
+			if (annotation.data.comments.length === 0) {
+				setAnnotations(
+					newAnnotations.filter((annotation) => annotation.data.id !== key)
+				);
+			}
+		});
 	};
 
 	const onChange = (annotation) => {
@@ -132,7 +139,7 @@ export default function EditArt() {
 								data={annotation}
 								onMouseOver={onMouseOver}
 								onMouseOut={onMouseOut}
-								key={annotation.id}
+								key={annotation.data.id}
 								onClick={onClick}
 							/>
 						))}
