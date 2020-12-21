@@ -16,6 +16,7 @@ export default function NavBar() {
 			<Menu>
 				<Home href='/'>홈</Home>
 				<ArtWorks href='/artworks'>작품 전체보기</ArtWorks>
+				<ArtWorks href='/add'>작품 추가하기</ArtWorks>
 			</Menu>
 		</Wrapper>
 	);

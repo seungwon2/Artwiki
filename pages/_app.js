@@ -30,7 +30,11 @@ html,
           body,
           body > div:first-child{
             height: 100%;
-          }
+		  }
+		  .ant-upload.ant-upload-select-picture-card {
+			width: 20rem;
+			height: 20rem;
+		}
 `;
 
 export default class Timeline extends App {
