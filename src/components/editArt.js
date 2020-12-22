@@ -26,12 +26,10 @@ export default function EditArt() {
 			.then(({ data }) => {
 				setAnnotations(data.annotations);
 				setPicture(data.image);
-				console.log(annotations);
 			})
 			.catch(function (error) {});
 	}, []);
 	const handleSubmit = () => {
-		console.log("submit: " + annotations);
 		axios
 			.patch(`https://www.artwiki-sh.com/api/artwork/${router.query.id}/`, {
 				annotations,
@@ -41,7 +39,6 @@ export default function EditArt() {
 	};
 
 	const onClick = (id, key) => {
-		console.log(annotations);
 		const newAnnotations = [...annotations].map((annotation) => {
 			const { data } = annotation;
 			const comments = data.comments.filter((comment) => comment.id !== id);

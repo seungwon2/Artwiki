@@ -14,7 +14,10 @@ export default function Comment({
 	return (
 		<>
 			{data.data.comments.map((comment) => (
-				<Wrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut} key={key}>
+				<Wrapper
+					onMouseOver={() => onMouseOver(data.data.id)}
+					onMouseOut={() => onMouseOut(data.data.id)}
+					key={key}>
 					<Label>{comment.text}</Label>
 					<Button onClick={() => onClick(comment.id, data.data.id)}>
 						delete
