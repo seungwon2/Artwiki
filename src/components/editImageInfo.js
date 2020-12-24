@@ -10,7 +10,7 @@ import {
 	EditFilled,
 } from "@ant-design/icons";
 
-export default function ImageInfo({
+export default function EditImageInfo({
 	id,
 	title,
 	artist,
