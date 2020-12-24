@@ -32,7 +32,6 @@ export default function Detail() {
 				<IconWrapper onClick={() => router.back()}>
 					<ArrowLeftOutlined style={{ fontSize: "20px" }} />
 				</IconWrapper>
-
 				<ImageDetail image={ArtWork.image} id={ArtWork.id} />
 				<ImageInfo
 					id={router.query.id}

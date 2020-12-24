@@ -1,9 +1,11 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { TagsFilled, EditFilled } from "@ant-design/icons";
+
+import { Button } from "antd";
+import { TagsFilled, EditFilled, EditOutlined } from "@ant-design/icons";
 
 export default function ImageInfo({
 	id,
@@ -17,6 +19,7 @@ export default function ImageInfo({
 	desc,
 }) {
 	const router = useRouter();
+	const [size, setSize] = useState("large");
 	return (
 		<Wrapper>
 			<TitleArea>
@@ -43,6 +46,16 @@ export default function ImageInfo({
 					}}>
 					<TagsFilled style={{ fontSize: 20 + "px" }} />
 					<ButtonText>라벨과 함께 보기</ButtonText>
+				</LongButton>
+				<LongButton
+					onClick={() => {
+						router.push({
+							pathname: "/detail/[id]/addinfo",
+							query: { id: id },
+						});
+					}}>
+					<EditOutlined style={{ fontSize: 20 + "px" }} />
+					<ButtonText>설명 편집하기</ButtonText>
 				</LongButton>
 			</ButtonArea>
 			<DescArea>
@@ -98,22 +111,7 @@ const BasicInfo = styled.label`
 const Desc = styled.label`
 	flex-basis: 45%;
 `;
-const Row = styled.div`
-	display: flex;
-	justify-content: space-between;
-	margin-top: 5rem;
-`;
-const Text = styled.label`
-	border: none;
-	background: none;
-	font-size: 1.1rem;
-	margin-bottom: 0;
-	color: black;
-`;
-const Button = styled.a`
-	display: flex;
-	align-items: center;
-`;
+
 const ButtonArea = styled.div`
 	margin: 24px 0;
 `;
@@ -134,3 +132,4 @@ const ButtonText = styled.label`
 	margin-left: 1.5rem;
 	margin-bottom: 0;
 `;
+const EditButton = styled.div``;
