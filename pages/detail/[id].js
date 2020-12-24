@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import axios from "axios";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
 import NavBar from "../../src/components/navBar";
 import ImageDetail from "../../src/components/imageDetail";
@@ -26,7 +27,12 @@ export default function Detail() {
 	return (
 		<>
 			<NavBar />
+			<Blank />
 			<Wrapper>
+				<IconWrapper onClick={() => router.back()}>
+					<ArrowLeftOutlined style={{ fontSize: "20px" }} />
+				</IconWrapper>
+
 				<ImageDetail image={ArtWork.image} id={ArtWork.id} />
 				<ImageInfo
 					id={router.query.id}
@@ -46,4 +52,8 @@ export default function Detail() {
 
 const Wrapper = styled.div`
 	margin: 0 5rem;
+`;
+const IconWrapper = styled.a``;
+const Blank = styled.div`
+	margin-top: 2.5rem;
 `;

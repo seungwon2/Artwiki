@@ -3,12 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import {
-	SwapLeftOutlined,
-	SwapRightOutlined,
-	TagsFilled,
-	EditFilled,
-} from "@ant-design/icons";
+import { TagsFilled, EditFilled } from "@ant-design/icons";
 
 export default function ImageInfo({
 	id,
