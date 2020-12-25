@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 
-import { Button } from "antd";
 import { TagsFilled, EditFilled, EditOutlined } from "@ant-design/icons";
 
 export default function ImageInfo({
@@ -19,7 +18,6 @@ export default function ImageInfo({
 	desc,
 }) {
 	const router = useRouter();
-	const [size, setSize] = useState("large");
 	return (
 		<Wrapper>
 			<TitleArea>

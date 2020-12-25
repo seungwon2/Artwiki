@@ -4,44 +4,52 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import NavBar from "../src/components/navBar";
-import { Upload, message, Form, Input, InputNumber, Button } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-
-function getBase64(img, callback) {
-	const reader = new FileReader();
-	reader.addEventListener("load", () => callback(reader.result));
-	reader.readAsDataURL(img);
-}
-
-function beforeUpload(file) {
-	const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-	if (!isJpgOrPng) {
-		message.error("You can only upload JPG/PNG file!");
-	}
-}
+import { message, Form, Input, Button, Alert } from "antd";
 
 export default function Add() {
-	const [imageUrl, setImageUrl] = useState({});
-	const [loading, setLoading] = useState(false);
-
-	const handleChange = (info) => {
-		if (info.file.status === "uploading") {
-			setLoading(true);
-			return;
-		}
-		if (info.file.status === "done") {
-			getBase64(info.file.originFileObj, (imageUrl) => setImageUrl(imageUrl));
-		}
+	const [ImgURL, setImgURL] = useState(null);
+	const [Image, setImage] = useState("");
+	const warning = () => {
+		message.warning("모든 정보를 입력해주세요!");
 	};
+	const onChangeImage = (e) => {
+		e.preventDefault();
+		let reader = new FileReader();
+		let file = e.target.files[0];
+		reader.onloadend = () => {
+			setImage(file);
+			setImgURL(reader.result);
+		};
+		reader.readAsDataURL(file);
+	};
+
 	const onFinish = (values) => {
 		console.log(values);
+		const FormData = require("form-data");
+		const form_data = new FormData();
+		form_data.append("r_phone_num", form.rPhoneNum);
+		form_data.append("doodle", Doodle);
+		form_data.append("post_code", postCode);
+		form_data.append("base_address", baseAddress);
+		form_data.append("redesign", redesign);
+		form_data.append("amount", amount);
+		form_data.append("receiver", form.receiver);
+		form_data.append("o_phone_num", form.oPhoneNum);
+		form_data.append("order", form.order);
+		form_data.append("email", form.email);
+		form_data.append("detail_address", form.detailAddress);
+
+		axios
+			.post("https://www.doodlehj.com/api/produce/", form_data)
+			.then(function () {
+				setStep(step + 1);
+			})
+			.catch(function () {
+				warning();
+			});
 	};
 	const validateMessages = {
 		required: "${label} 입력해주세요!",
-		types: {
-			email: "${label} is not a valid email!",
-			number: "${label} is not a valid number!",
-		},
 	};
 	const layout = {
 		labelCol: {
@@ -51,23 +59,24 @@ export default function Add() {
 			span: 16,
 		},
 	};
+
 	return (
 		<Wrapper>
 			<NavBar />
 			<UploadSection>
 				<Picture>
-					<Upload
-						name='picture'
-						listType='picture-card'
-						className='avatar-uploader'
-						showUploadList={false}
-						action='https://www.mocky.io/v2/5cc8019d300000980a055e76'
-						beforeUpload={beforeUpload}
-						onChange={handleChange}>
-						{loading && <img src={imageUrl} style={{ width: "100%" }} />}
-						{!loading && <PlusOutlined />}
-					</Upload>
-					<Info>박스를 눌러서 이미지 업로드</Info>
+					<FileBox>
+						<InputFile
+							type='file'
+							name='image'
+							onChange={onChangeImage}
+							id='image'
+						/>
+					</FileBox>
+					<ImageArea>
+						{ImgURL && <img className='preview' src={ImgURL} width='80%' />}
+					</ImageArea>
+					<Info>작품 이미지 업로드</Info>
 				</Picture>
 				<Form
 					{...layout}
@@ -145,7 +154,7 @@ export default function Add() {
 						<Input.TextArea />
 					</Form.Item>
 					<Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-						<Button type='primary' htmlType='submit'>
+						<Button onClick={onFinish} type='primary' htmlType='submit'>
 							Submit
 						</Button>
 					</Form.Item>
@@ -163,8 +172,21 @@ const UploadSection = styled.div`
 `;
 const Picture = styled.div`
 	margin: 1rem;
+	width: 50%;
+	text-align: center;
 `;
 const Info = styled.label`
 	display: flex;
 	justify-content: center;
+`;
+const FileBox = styled.div`
+	width: 100%;
+	margin: auto;
+	align-item: center;
+	justify-content: center;
+	display: flex;
+`;
+const InputFile = styled.input``;
+const ImageArea = styled.div`
+	margin: 1rem;
 `;

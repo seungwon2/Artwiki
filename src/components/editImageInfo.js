@@ -3,53 +3,28 @@
 import React from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import {
-	SwapLeftOutlined,
-	SwapRightOutlined,
-	TagsFilled,
-	EditFilled,
-} from "@ant-design/icons";
 
-export default function EditImageInfo({
-	id,
-	title,
-	artist,
-	date,
-	medium,
-	location,
-	style,
-	dimensions,
-	desc,
-}) {
+export default function EditImageInfo() {
 	const router = useRouter();
+	const [ArtWork, setArtWork] = useState([]);
+	useEffect(() => {
+		axios
+			.get("https://www.artwiki-sh.com/api/artwork/" + `${router.query.id}/`)
+			.then(({ data }) => {
+				setArtWork(data);
+			})
+			.catch((error) => {});
+	}, []);
+
 	return (
 		<Wrapper>
 			<TitleArea>
-				<Title>{title}</Title>
+				<Title>{ArtWork.title}</Title>
 				<SubTitle>
 					{artist}&nbsp;{date}
 				</SubTitle>
 			</TitleArea>
-			<ButtonArea>
-				<LongButton
-					onClick={() => {
-						router.push({ pathname: "/detail/[id]/edit", query: { id: id } });
-					}}>
-					<EditFilled style={{ fontSize: 20 + "px" }} />
-					<ButtonText>라벨 등록 하기</ButtonText>
-				</LongButton>
 
-				<LongButton
-					onClick={() => {
-						router.push({
-							pathname: "/detail/[id]/label",
-							query: { id: id },
-						});
-					}}>
-					<TagsFilled style={{ fontSize: 20 + "px" }} />
-					<ButtonText>라벨과 함께 보기</ButtonText>
-				</LongButton>
-			</ButtonArea>
 			<DescArea>
 				<Desc>{desc}</Desc>
 				<BasicInfo>
