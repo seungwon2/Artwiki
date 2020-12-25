@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 import NavBar from "../src/components/navBar";
 import { message, Form, Input, Button, Alert } from "antd";
@@ -9,6 +10,8 @@ import { message, Form, Input, Button, Alert } from "antd";
 export default function Add() {
 	const [ImgURL, setImgURL] = useState(null);
 	const [Image, setImage] = useState("");
+	const [artinfo, setArtinfo] = useState({});
+
 	const warning = () => {
 		message.warning("모든 정보를 입력해주세요!");
 	};
@@ -25,27 +28,29 @@ export default function Add() {
 
 	const onFinish = (values) => {
 		console.log(values);
+		setArtinfo(values);
 		const FormData = require("form-data");
-		const form_data = new FormData();
-		form_data.append("r_phone_num", form.rPhoneNum);
-		form_data.append("doodle", Doodle);
-		form_data.append("post_code", postCode);
-		form_data.append("base_address", baseAddress);
-		form_data.append("redesign", redesign);
-		form_data.append("amount", amount);
-		form_data.append("receiver", form.receiver);
-		form_data.append("o_phone_num", form.oPhoneNum);
-		form_data.append("order", form.order);
-		form_data.append("email", form.email);
-		form_data.append("detail_address", form.detailAddress);
+		const artwork = new FormData();
+		artwork.append("image", ImgURL);
+		artwork.append("title", artinfo.title);
+		artwork.append("artist", artinfo.artist);
+		artwork.append("medium", artinfo.medium);
+		artwork.append("demensions", artinfo.demensions);
+		artwork.append("style", artinfo.style);
+		artwork.append("location", artinfo.location);
+		artwork.append("desc", artinfo.desc);
+		artwork.append("short_desc", artinfo.short_desc);
+
+		console.log("artwork: ", artwork);
 
 		axios
-			.post("https://www.doodlehj.com/api/produce/", form_data)
+			.post("https://www.artwiki-sh.com/api/artwork/", artwork)
 			.then(function () {
-				setStep(step + 1);
+				console.log("성공");
 			})
-			.catch(function () {
+			.catch(function (error) {
 				warning();
+				console.log(error);
 			});
 	};
 	const validateMessages = {
@@ -84,8 +89,8 @@ export default function Add() {
 					onFinish={onFinish}
 					validateMessages={validateMessages}>
 					<Form.Item
-						name={["artinfo", "제목"]}
-						label='제목'
+						name={["artinfo", "title"]}
+						label='title'
 						rules={[
 							{
 								required: true,
@@ -94,8 +99,8 @@ export default function Add() {
 						<Input />
 					</Form.Item>
 					<Form.Item
-						name={["artinfo", "작가"]}
-						label='작가'
+						name={["artinfo", "artist"]}
+						label='artist'
 						rules={[
 							{
 								required: true,
@@ -104,8 +109,8 @@ export default function Add() {
 						<Input />
 					</Form.Item>
 					<Form.Item
-						name={["artinfo", "재료"]}
-						label='재료'
+						name={["artinfo", "medium"]}
+						label='medium'
 						rules={[
 							{
 								required: true,
@@ -114,8 +119,8 @@ export default function Add() {
 						<Input />
 					</Form.Item>
 					<Form.Item
-						name={["artinfo", "소장처"]}
-						label='소장처'
+						name={["artinfo", "location"]}
+						label='location'
 						rules={[
 							{
 								required: true,
@@ -124,8 +129,8 @@ export default function Add() {
 						<Input />
 					</Form.Item>
 					<Form.Item
-						name={["artinfo", "화파"]}
-						label='화파'
+						name={["artinfo", "style"]}
+						label='style'
 						rules={[
 							{
 								required: true,
@@ -134,8 +139,8 @@ export default function Add() {
 						<Input />
 					</Form.Item>
 					<Form.Item
-						name={["artinfo", "작품 크기"]}
-						label='작품 크기'
+						name={["artinfo", "demensions"]}
+						label='demensions'
 						rules={[
 							{
 								required: true,
@@ -144,8 +149,18 @@ export default function Add() {
 						<Input />
 					</Form.Item>
 					<Form.Item
-						name={["artinfo", "설명"]}
-						label='설명'
+						name={["artinfo", "desc"]}
+						label='desc'
+						rules={[
+							{
+								required: true,
+							},
+						]}>
+						<Input.TextArea />
+					</Form.Item>
+					<Form.Item
+						name={["artinfo", "short_desc"]}
+						label='short_desc'
 						rules={[
 							{
 								required: true,
