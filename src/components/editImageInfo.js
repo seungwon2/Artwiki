@@ -43,9 +43,7 @@ export default function EditImageInfo() {
 					query: { id: router.query.id },
 				});
 			})
-			.catch(function (error) {
-				console.log(error);
-			});
+			.catch(function (error) {});
 	};
 
 	const handleFormChange = (e) => {
