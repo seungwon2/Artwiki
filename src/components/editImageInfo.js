@@ -21,12 +21,27 @@ export default function EditImageInfo() {
 	}, []);
 
 	const onSubmit = () => {
+		const FormData = require("form-data");
+		const artinfo = new FormData();
+		artinfo.append("title", artwork.title);
+		artinfo.append("artist", artwork.artist);
+		artinfo.append("medium", artwork.medium);
+		artinfo.append("demensions", artwork.demensions);
+		artinfo.append("style", artwork.style);
+		artinfo.append("location", artwork.location);
+		artinfo.append("desc", artwork.desc);
+		artinfo.append("short_desc", artwork.short_desc);
+		artinfo.append("date", artwork.date);
 		axios
-			.patch(`https://www.artwiki-sh.com/api/artwork/${router.query.id}/`, {
-				artwork,
-			})
+			.patch(
+				`https://www.artwiki-sh.com/api/artwork/${router.query.id}/`,
+				artinfo
+			)
 			.then(function () {
-				console.log("성공");
+				router.push({
+					pathname: "/detail/[id]",
+					query: { id: router.query.id },
+				});
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -38,7 +53,6 @@ export default function EditImageInfo() {
 			...artwork,
 			[e.target.name]: e.target.value,
 		});
-		console.log(artwork);
 	};
 
 	const { TextArea } = Input;

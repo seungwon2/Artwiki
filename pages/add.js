@@ -6,8 +6,10 @@ import axios from "axios";
 
 import NavBar from "../src/components/navBar";
 import { message, Input, Button } from "antd";
+import { useRouter } from "next/router";
 
 export default function Add() {
+	const router = useRouter();
 	const [ImgURL, setImgURL] = useState(null);
 	const [Image, setImage] = useState("");
 	const [form, setForm] = useState({
@@ -57,7 +59,11 @@ export default function Add() {
 
 		axios
 			.post("https://www.artwiki-sh.com/api/artwork/", artwork)
-			.then(function () {})
+			.then(function () {
+				router.push({
+					pathname: "/",
+				});
+			})
 			.catch(function (error) {
 				warning();
 			});
