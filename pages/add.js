@@ -5,7 +5,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 import NavBar from "../src/components/navBar";
-import { message, Input, Button, Alert } from "antd";
+import { message, Input, Button } from "antd";
 
 export default function Add() {
 	const [ImgURL, setImgURL] = useState(null);
