@@ -27,13 +27,6 @@ export default function Label() {
 	const [annotation, setAnnotation] = useState({});
 	const [activeAnnotations, setActiveAnnotations] = useState([]);
 
-	const onClick = (id) => {
-		const newAnnotations = [...annotations];
-		setAnnotations(
-			newAnnotations.filter((annotation) => annotation.data.id !== id)
-		);
-	};
-
 	const onChange = (annotation) => {
 		setAnnotation(annotation);
 	};
@@ -80,16 +73,6 @@ export default function Label() {
 	};
 	const activeAnnotationComparator = (a, b) => {
 		return a.data.id === b;
-	};
-	const onMouseOver = (id) => (e) => {
-		setActiveAnnotations([...activeAnnotations, id]);
-	};
-	const onMouseOut = (id) => (e) => {
-		const index = activeAnnotations.indexOf(id);
-		setActiveAnnotations([
-			...activeAnnotations.slice(0, index),
-			...activeAnnotations.slice(index + 1),
-		]);
 	};
 
 	return (

@@ -161,9 +161,7 @@ export default function EditArt() {
 		</Wrapper>
 	);
 }
-const ArtWorkWrapper = styled.div`
-	margin: 10rem;
-`;
+
 const Label = styled.label`
 	width: 100%;
 	margin: 0.5rem auto;
@@ -175,9 +173,6 @@ const ButtonArea = styled.div`
 	display: flex;
 	justify-content: center;
 	margin: 0rem 15rem 5rem 15rem;
-`;
-const Blank = styled.div`
-	margin: 0 1rem;
 `;
 const LabelBox = styled.div`
 	height: 300px;
@@ -191,9 +186,7 @@ const LabelBox = styled.div`
 const Phantom = styled.div`
 	width: 3rem;
 `;
-const CommentArea = styled.div`
-	width: 50%;
-`;
+
 const PictureArea = styled.div`
 	display: flex;
 	margin: 5rem;

@@ -130,4 +130,3 @@ const ButtonText = styled.label`
 	margin-left: 1.5rem;
 	margin-bottom: 0;
 `;
-const EditButton = styled.div``;
