@@ -1,10 +1,8 @@
 /** @format */
 
 import React, { Component } from "react";
-import styled, { keyframes } from "styled-components";
-import Annotation from "react-image-annotation";
-import { RectangleSelector } from "react-image-annotation/lib/selectors";
-import axios from "axios";
+import styled from "styled-components";
+
 import TextEditor from "./TextEditor";
 
 export default class ThreadedContent extends Component {

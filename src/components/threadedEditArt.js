@@ -3,8 +3,6 @@
 import React, { Component } from "react";
 import styled, { keyframes } from "styled-components";
 import Annotation from "react-image-annotation";
-import { RectangleSelector } from "react-image-annotation/lib/selectors";
-import axios from "axios";
 
 import TextEditor from "../src/components/TextEditor";
 
