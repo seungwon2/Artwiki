@@ -19,7 +19,7 @@ Crowdsourcing Based Online Art Gallery for Visual Impairment People, Artwiki pro
 
 ### UI 소개
 
-##### Home 화면
+#### Home 화면
 
 ![Home](./forReadme/home.png)
 
@@ -27,7 +27,7 @@ Crowdsourcing Based Online Art Gallery for Visual Impairment People, Artwiki pro
 프로젝트 설명 페이지를 통해 이용자들에게 위 웹사이트의 목적을 알린다. 테마별 작품보기에서는 여러 작품을 한 테마로 분류하여 묶어 놓아 테마별로 작품들을 감상할 수 있도록 했다.
 또한 시각장애인들을 위한 아트 갤러리인 만큼 깔끔하고 복잡하지 않도록 구성하였다.
 
-##### Edit Image annotation 화면
+#### Edit Image annotation 화면
 
 ![Edit Image Annotation](./forReadme/annotation.png)
 
@@ -36,14 +36,14 @@ Crowdsourcing Based Online Art Gallery for Visual Impairment People, Artwiki pro
 내용을 입력하고 저장을 누르면 라벨링된 그림 오른쪽에 Annotation List에 작성한 라벨이 저장되어 표시된다.
 라벨 오른쪽 부분의 delete버튼을 누르면 라벨이 삭제된다. 편집 저장 버튼을 누르면 리스트에 있는 생성한 라벨들이 저장되고 편집 취소를 누르면 저장되지 않는다.
 
-##### Edit Image Description 화면
+#### Edit Image Description 화면
 
 ![Edit Image Description](./forReadme/desc_edit.png)
 
 불특정 다수인 크라우드 워커 (crowd worker)가 그림에 대한 설명을 직접 입력할 수 있도록 그림마다 그림 설명을 편집할 수 있는 화면을 구현하였다.
 크라우드 워커는 각 작품의 설명 부분을 자유롭게 수정할 수 있으며, 새로운 그림을 추가할 수도 있다.
 
-##### Image Detail 화면
+#### Image Detail 화면
 
 ![Detail](./forReadme/detail.png)
 
