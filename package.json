@@ -11,7 +11,7 @@
 		"@ant-design/icons": "^4.3.0",
 		"ant-design": "^1.0.0",
 		"antd": "^4.9.4",
-		"axios": "^0.21.0",
+		"axios": "^0.21.1",
 		"caniuse-lite": "^1.0.30001168",
 		"form-data": "^3.0.0",
 		"moment": "^2.29.1",
