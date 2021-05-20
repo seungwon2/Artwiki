@@ -1,18 +1,41 @@
 # 2020-2 HCI Lab artwiki project
 
+## Getting Super Powers
+
 ## 시각장애인의 예술 감상을 위한 크라우드 소싱 기반 온라인 아트 갤러리 연구
+
+Becoming a super hero is a fairly straight forward process:
 
 Crowdsourcing Based Online Art Gallery for Visual Impairment People, Artwiki project
 
+```
+$ give me super-powers
+```
+
 ## 프로젝트에서 맡은 역할
+
+{% hint style="info" %}
+ Super-powers are granted randomly so please submit an issue if you're not happy with yours.
+{% endhint %}
 
 * Web front-end 개발 \(react.js, next.js 사용\)
 * "[시각장애인의 예술 감상을 위한 크라우드 소싱 기반 온라인 아트 갤러리 연구](https://github.com/seungwon2/Artwiki/tree/5e131d25b0b0e249e307c6eda5c5f8794603d623/docs/README.md)" 논문 1저자
 * [2021 HCI Korea 학회](https://github.com/seungwon2/Artwiki/tree/5e131d25b0b0e249e307c6eda5c5f8794603d623/docs/README.md) 발표자
 
+Once you're strong enough, save the world:
+
 ## 연구 요약문
 
+{% code title="hello.sh" %}
+```bash
+# Ain't no code for that yet, sorry
+echo 'You got to trust me on this, I saved the world'
+```
+{% endcode %}
+
 시각장애인들은 또래 정안인만큼 예술 작품 감상에 관심이 많다. 하지만 현존하는 시각 장애인 예술 감상 매개체는 단순한 작품 정보 전달에 그치거나 특정한 장소, 소수의 그림에만 적용되는 등 극도로 한정적인 범위에서만 이용할 수 있다. 본 연구에서 이러한 한계를 해결하기 위해 시각장애인들이 시간과 장소에 대한 제약 없이 작품 내 내부 요소에 대한 음성 설명을 들으며 감상을 들을 수 있는 크라우드 소싱 기반 온라인 아트 갤러리 웹을 제안한다. 시각 장애인들이 터치스크린 기반 개인용 기기를 통해 더 많은 작품을 쉽게 접하고, 작품 내부 요소를 직접 터치하며 전체적인 구도와 각각의 특징을 파악할 수 있게 함으로써 한정적인 정보 수용에 그치던 시각장애인의 예술 감상 영역을 주체적인 예술 경험 단계로 확장할 수 있을 것으로 기대한다.
+
+
 
 ## UI 소개
 
